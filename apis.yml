@@ -1,7 +1,11 @@
 aid: urban-outfitters
-url: https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/apis.yml
 modified: '2026-03-24'
 apis: []
 common:
   - type: Website
     url: https://www.urban-outfitters.com
+description: >-
+  Urban Outfitters is a multi-channel lifestyle retailer offering an eclectic mix
+  of women's, men's, and kid's apparel, footwear, accessories, beauty, and home goods.
