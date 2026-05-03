@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-structure/affiliate-api-commission-report-structure.json",
+  "name": "CommissionReport",
+  "description": "Commission earnings report for an affiliate",
+  "type": "object",
+  "properties": {
+    "affiliateId": {
+      "type": "string",
+      "description": "Affiliate account identifier",
+      "example": "aff-abc123"
+    },
+    "period": {
+      "type": "object",
+      "description": "Reporting period",
+      "properties": {
+        "start": {
+          "type": "date",
+          "example": "2025-01-01"
+        },
+        "end": {
+          "type": "date",
+          "example": "2025-03-31"
+        }
+      }
+    },
+    "totalClicks": {
+      "type": "int32",
+      "description": "Total affiliate link clicks",
+      "example": 1250
+    },
+    "totalSales": {
+      "type": "int32",
+      "description": "Total confirmed sales attributed to affiliate",
+      "example": 48
+    },
+    "totalRevenue": {
+      "type": "double",
+      "description": "Total revenue generated from affiliate sales",
+      "example": 2400.0
+    },
+    "totalCommission": {
+      "type": "double",
+      "description": "Total commission earned",
+      "example": 48.0
+    },
+    "commissionRate": {
+      "type": "double",
+      "description": "Commission rate (decimal)",
+      "example": 0.02
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency for monetary values",
+      "example": "USD"
+    }
+  }
+}

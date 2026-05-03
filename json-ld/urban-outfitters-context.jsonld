@@ -1,0 +1,234 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "uo": "https://www.urbanoutfitters.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "AffiliateLink": "uo:AffiliateLink",
+    "AffiliateLinkCreate": "uo:AffiliateLinkCreate",
+    "CommissionReport": "uo:CommissionReport",
+    "Creative": "uo:Creative",
+    "CreativeListResponse": "uo:CreativeListResponse",
+    "InventoryUpdate": "uo:InventoryUpdate",
+    "InventoryUpdateResponse": "uo:InventoryUpdateResponse",
+    "Order": "uo:Order",
+    "OrderItem": "uo:OrderItem",
+    "OrderListResponse": "uo:OrderListResponse",
+    "Product": "uo:Product",
+    "ProductSearchResponse": "uo:ProductSearchResponse",
+    "SellerProduct": "uo:SellerProduct",
+    "SellerProductCreate": "uo:SellerProductCreate",
+    "SellerProductListResponse": "uo:SellerProductListResponse",
+    "Shipment": "uo:Shipment",
+    "ShipmentCreate": "uo:ShipmentCreate",
+    "ShippingAddress": "uo:ShippingAddress",
+    "address1": {
+      "@id": "uo:address1",
+      "@type": "xsd:string"
+    },
+    "address2": {
+      "@id": "uo:address2",
+      "@type": "xsd:string"
+    },
+    "affiliateId": {
+      "@id": "uo:affiliateId",
+      "@type": "xsd:string"
+    },
+    "affiliateUrl": {
+      "@id": "uo:affiliateUrl",
+      "@type": "xsd:string"
+    },
+    "brand": "schema:brand",
+    "carrier": {
+      "@id": "uo:carrier",
+      "@type": "xsd:string"
+    },
+    "category": "schema:category",
+    "city": {
+      "@id": "uo:city",
+      "@type": "xsd:string"
+    },
+    "clickUrl": {
+      "@id": "uo:clickUrl",
+      "@type": "xsd:string"
+    },
+    "commissionRate": {
+      "@id": "uo:commissionRate",
+      "@type": "xsd:decimal"
+    },
+    "country": {
+      "@id": "uo:country",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "uo:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "creatives": {
+      "@id": "uo:creatives",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "currency": "schema:priceCurrency",
+    "description": "schema:description",
+    "end": {
+      "@id": "uo:end",
+      "@type": "xsd:date"
+    },
+    "endDate": {
+      "@id": "uo:endDate",
+      "@type": "xsd:date"
+    },
+    "estimatedDelivery": {
+      "@id": "uo:estimatedDelivery",
+      "@type": "xsd:date"
+    },
+    "failed": {
+      "@id": "uo:failed",
+      "@type": "xsd:integer"
+    },
+    "id": {
+      "@id": "uo:id",
+      "@type": "xsd:string"
+    },
+    "imageUrl": "schema:image",
+    "imageUrls": "schema:image",
+    "inStock": {
+      "@id": "uo:inStock",
+      "@type": "xsd:boolean"
+    },
+    "inventoryQuantity": {
+      "@id": "uo:inventoryQuantity",
+      "@type": "xsd:integer"
+    },
+    "items": {
+      "@id": "uo:items",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "limit": {
+      "@id": "uo:limit",
+      "@type": "xsd:integer"
+    },
+    "name": "schema:name",
+    "offset": {
+      "@id": "uo:offset",
+      "@type": "xsd:integer"
+    },
+    "orderId": {
+      "@id": "uo:orderId",
+      "@type": "xsd:string"
+    },
+    "orders": {
+      "@id": "uo:orders",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "period": {
+      "@id": "uo:period",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "uo:postalCode",
+      "@type": "xsd:string"
+    },
+    "price": "schema:price",
+    "products": {
+      "@id": "uo:products",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "quantity": {
+      "@id": "uo:quantity",
+      "@type": "xsd:integer"
+    },
+    "results": {
+      "@id": "uo:results",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "salePrice": {
+      "@id": "uo:salePrice",
+      "@type": "xsd:decimal"
+    },
+    "shippingAddress": {
+      "@id": "uo:shippingAddress",
+      "@type": "xsd:string"
+    },
+    "size": {
+      "@id": "uo:size",
+      "@type": "xsd:string"
+    },
+    "sizes": {
+      "@id": "uo:sizes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "sku": {
+      "@id": "uo:sku",
+      "@type": "xsd:string"
+    },
+    "start": {
+      "@id": "uo:start",
+      "@type": "xsd:date"
+    },
+    "startDate": {
+      "@id": "uo:startDate",
+      "@type": "xsd:date"
+    },
+    "state": {
+      "@id": "uo:state",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "uo:status",
+      "@type": "xsd:string"
+    },
+    "targetUrl": {
+      "@id": "uo:targetUrl",
+      "@type": "xsd:string"
+    },
+    "total": {
+      "@id": "uo:total",
+      "@type": "xsd:integer"
+    },
+    "totalClicks": {
+      "@id": "uo:totalClicks",
+      "@type": "xsd:integer"
+    },
+    "totalCommission": {
+      "@id": "uo:totalCommission",
+      "@type": "xsd:decimal"
+    },
+    "totalRevenue": {
+      "@id": "uo:totalRevenue",
+      "@type": "xsd:decimal"
+    },
+    "totalSales": {
+      "@id": "uo:totalSales",
+      "@type": "xsd:integer"
+    },
+    "trackingId": {
+      "@id": "uo:trackingId",
+      "@type": "xsd:string"
+    },
+    "trackingNumber": {
+      "@id": "uo:trackingNumber",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "uo:type",
+      "@type": "xsd:string"
+    },
+    "updated": {
+      "@id": "uo:updated",
+      "@type": "xsd:integer"
+    },
+    "updates": {
+      "@id": "uo:updates",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

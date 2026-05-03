@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-structure/affiliate-api-product-search-response-structure.json",
+  "name": "ProductSearchResponse",
+  "description": "Paginated product search results",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "int32",
+      "description": "Total matching products",
+      "example": 450
+    },
+    "offset": {
+      "type": "int32",
+      "description": "Current offset",
+      "example": 0
+    },
+    "limit": {
+      "type": "int32",
+      "description": "Items per page",
+      "example": 20
+    },
+    "products": {
+      "type": "array",
+      "description": "List of products",
+      "items": {
+        "$ref": "#/components/schemas/Product"
+      }
+    }
+  }
+}

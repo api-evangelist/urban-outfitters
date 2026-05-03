@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-structure/marketplace-api-shipment-structure.json",
+  "name": "Shipment",
+  "description": "Shipment record for a fulfilled order",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Shipment identifier",
+      "example": "shipment-abc123"
+    },
+    "orderId": {
+      "type": "string",
+      "description": "Associated order identifier",
+      "example": "order-xyz789"
+    },
+    "carrier": {
+      "type": "string",
+      "description": "Shipping carrier",
+      "example": "UPS"
+    },
+    "trackingNumber": {
+      "type": "string",
+      "description": "Carrier tracking number",
+      "example": "1Z999AA10123456784"
+    },
+    "status": {
+      "type": "string",
+      "description": "Shipment status",
+      "enum": [
+        "shipped",
+        "in_transit",
+        "delivered"
+      ],
+      "example": "shipped"
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "Shipment creation time",
+      "example": "2025-03-17T09:00:00Z"
+    },
+    "estimatedDelivery": {
+      "type": "date",
+      "description": "Estimated delivery date",
+      "example": "2025-03-20"
+    }
+  }
+}

@@ -1,0 +1,141 @@
+name: Urban Outfitters Marketplace API
+description: >-
+  Shared capability definition for the Urban Outfitters marketplace (UO MRKT)
+  seller integration API. Covers product catalog sync, inventory management,
+  order retrieval, and shipment tracking for approved third-party sellers.
+version: '1.0.0'
+baseUrl: https://marketplace.urbanoutfitters.com/api
+mcp:
+  port: 9111
+rest:
+  port: 8111
+operations:
+  - operationId: listSellerProducts
+    name: List Seller Products
+    description: Retrieve the authenticated seller's product listings
+    method: GET
+    path: /v1/products
+    parameters:
+      - name: status
+        in: query
+        description: Filter products by status
+        schema:
+          type: string
+          enum: [active, inactive, pending_review]
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+    responses:
+      - status: 200
+        description: Seller product listings
+
+  - operationId: createSellerProduct
+    name: Create Seller Product
+    description: Submit a new product listing for review
+    method: POST
+    path: /v1/products
+    requestBody:
+      required: true
+      schema:
+        type: object
+        required: [sku, name, price, currency]
+        properties:
+          sku:
+            type: string
+          name:
+            type: string
+          price:
+            type: number
+          currency:
+            type: string
+    responses:
+      - status: 201
+        description: Product listing created and submitted for review
+      - status: 400
+        description: Invalid product data
+
+  - operationId: updateInventory
+    name: Update Inventory
+    description: Update inventory levels for one or more seller products
+    method: PUT
+    path: /v1/inventory
+    requestBody:
+      required: true
+      schema:
+        type: object
+        required: [updates]
+        properties:
+          updates:
+            type: array
+            items:
+              type: object
+              properties:
+                sku:
+                  type: string
+                quantity:
+                  type: integer
+    responses:
+      - status: 200
+        description: Inventory updated successfully
+
+  - operationId: listOrders
+    name: List Marketplace Orders
+    description: Retrieve orders from the Urban Outfitters marketplace
+    method: GET
+    path: /v1/orders
+    parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum: [pending, acknowledged, shipped, delivered, cancelled]
+      - name: start_date
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+    responses:
+      - status: 200
+        description: List of marketplace orders
+
+  - operationId: createShipment
+    name: Create Shipment
+    description: Submit shipment tracking information for a fulfilled order
+    method: POST
+    path: /v1/orders/{order_id}/shipments
+    parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: string
+    requestBody:
+      required: true
+      schema:
+        type: object
+        required: [carrier, trackingNumber]
+        properties:
+          carrier:
+            type: string
+          trackingNumber:
+            type: string
+          estimatedDelivery:
+            type: string
+            format: date
+    responses:
+      - status: 201
+        description: Shipment created
+      - status: 404
+        description: Order not found

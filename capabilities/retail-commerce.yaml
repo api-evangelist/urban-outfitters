@@ -1,0 +1,113 @@
+name: Urban Outfitters Retail Commerce
+description: >-
+  Workflow capability combining Urban Outfitters affiliate and marketplace APIs
+  to enable retail commerce integrations. Supports affiliate marketing for
+  content creators and multi-channel sellers managing inventory through
+  the UO MRKT marketplace platform.
+version: '1.0.0'
+mcp:
+  port: 9080
+rest:
+  port: 8080
+personas:
+  - name: Affiliate Partner
+    description: Content creators, bloggers, and influencers earning commissions by promoting Urban Outfitters products
+  - name: Marketplace Seller
+    description: Independent fashion and lifestyle brands selling through the UO MRKT marketplace
+  - name: Developer
+    description: Developers integrating Urban Outfitters affiliate or marketplace APIs into applications
+tools:
+  - name: search_products
+    description: Search the Urban Outfitters product catalog for affiliate promotion
+    operationId: searchProducts
+    api: affiliate-api
+    parameters:
+      - name: q
+        description: Search query string
+      - name: category
+        description: Product category filter
+      - name: limit
+        description: Number of results to return
+  - name: get_product_details
+    description: Get detailed product information including affiliate deep link
+    operationId: getProduct
+    api: affiliate-api
+    parameters:
+      - name: product_id
+        description: The unique product identifier
+  - name: create_affiliate_link
+    description: Generate an affiliate tracking link for a product or page URL
+    operationId: createAffiliateLink
+    api: affiliate-api
+    parameters:
+      - name: targetUrl
+        description: The Urban Outfitters URL to create an affiliate link for
+      - name: affiliateId
+        description: Your affiliate account identifier
+  - name: get_commission_report
+    description: Retrieve commission earnings and performance metrics for a date range
+    operationId: getCommissionReport
+    api: affiliate-api
+    parameters:
+      - name: start_date
+        description: Report start date
+      - name: end_date
+        description: Report end date
+      - name: affiliate_id
+        description: Affiliate account identifier
+  - name: list_creative_assets
+    description: Retrieve available banner ads and creative assets for promotion
+    operationId: listCreatives
+    api: affiliate-api
+    parameters:
+      - name: size
+        description: Banner size filter (e.g. 300x250, 728x90)
+  - name: list_seller_products
+    description: List your product catalog on the Urban Outfitters marketplace
+    operationId: listSellerProducts
+    api: marketplace-api
+    parameters:
+      - name: status
+        description: Filter by product status (active, inactive, pending_review)
+      - name: limit
+        description: Number of products to return
+  - name: create_seller_product
+    description: Submit a new product listing to the Urban Outfitters marketplace
+    operationId: createSellerProduct
+    api: marketplace-api
+    parameters:
+      - name: sku
+        description: Your product SKU
+      - name: name
+        description: Product name
+      - name: price
+        description: Product retail price
+      - name: currency
+        description: Price currency code
+  - name: update_inventory
+    description: Update inventory levels for your marketplace products
+    operationId: updateInventory
+    api: marketplace-api
+    parameters:
+      - name: updates
+        description: Array of SKU and quantity pairs to update
+  - name: list_orders
+    description: Retrieve orders for your marketplace products
+    operationId: listOrders
+    api: marketplace-api
+    parameters:
+      - name: status
+        description: Filter by order status
+      - name: start_date
+        description: Filter orders from this date
+  - name: create_shipment
+    description: Submit shipment tracking information for a fulfilled order
+    operationId: createShipment
+    api: marketplace-api
+    parameters:
+      - name: order_id
+        description: The order identifier to create a shipment for
+      - name: carrier
+        description: Shipping carrier name
+      - name: trackingNumber
+        description: Carrier tracking number

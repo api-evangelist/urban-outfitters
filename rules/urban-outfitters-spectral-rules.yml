@@ -1,0 +1,314 @@
+rules:
+
+  # Info Rules
+  uo-info-title-present:
+    description: API info must have a title
+    message: Info object must have a title
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+
+  uo-info-description-present:
+    description: API info must have a description
+    message: Info object must have a description
+    severity: warn
+    given: $.info
+    then:
+      field: description
+      function: truthy
+
+  uo-info-version-present:
+    description: API info must have a version
+    message: Info object must have a version
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+
+  # OpenAPI Version Rules
+  uo-openapi-version:
+    description: Must use OpenAPI 3.x
+    message: OpenAPI version must be 3.x
+    severity: error
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # Server Rules
+  uo-servers-present:
+    description: API must define servers
+    message: Servers array must be defined and non-empty
+    severity: warn
+    given: $
+    then:
+      field: servers
+      function: truthy
+
+  uo-server-url-https:
+    description: Server URLs should use HTTPS
+    message: "Server URL should use HTTPS: {{value}}"
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  # Path Rules
+  uo-paths-present:
+    description: API must define paths
+    message: Paths object must be defined and non-empty
+    severity: error
+    given: $
+    then:
+      field: paths
+      function: truthy
+
+  uo-path-lowercase:
+    description: Path segments should be lowercase
+    message: "Path should use lowercase letters: {{value}}"
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/[a-z0-9/_{}.-]*$"
+
+  # Operation Rules
+  uo-operation-id-present:
+    description: All operations must have an operationId
+    message: Operation must have an operationId
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+
+  uo-operation-summary-present:
+    description: All operations must have a summary
+    message: Operation must have a summary
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+
+  uo-operation-description-present:
+    description: All operations should have a description
+    message: Operation should have a description
+    severity: hint
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+
+  uo-operation-tags-present:
+    description: All operations must have at least one tag
+    message: Operation must have at least one tag
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  # Tag Rules
+  uo-tags-defined:
+    description: All tags used in operations should be defined at the top level
+    message: Tags should be defined in the global tags array
+    severity: warn
+    given: $
+    then:
+      field: tags
+      function: truthy
+
+  # Parameter Rules
+  uo-parameter-description-present:
+    description: All parameters should have a description
+    message: Parameter must have a description
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: description
+      function: truthy
+
+  uo-parameter-schema-present:
+    description: All parameters must have a schema
+    message: Parameter must have a schema
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: schema
+      function: truthy
+
+  # Request Body Rules
+  uo-request-body-description:
+    description: Request bodies should have a description
+    message: Request body should have a description
+    severity: hint
+    given: $.paths[*][post,put,patch].requestBody
+    then:
+      field: description
+      function: truthy
+
+  # Response Rules
+  uo-response-description-present:
+    description: All responses must have a description
+    message: Response must have a description
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses[*]
+    then:
+      field: description
+      function: truthy
+
+  uo-response-success-present:
+    description: Operations must have at least one success (2xx) response
+    message: Operation must define a 2xx response
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["202"]
+            - required: ["204"]
+
+  uo-response-error-present:
+    description: Operations should define error responses
+    message: Operation should define at least one error response (4xx or 5xx)
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: ["400"]
+            - required: ["401"]
+            - required: ["403"]
+            - required: ["404"]
+            - required: ["500"]
+
+  # Schema Rules
+  uo-schema-description-present:
+    description: All schemas should have a description
+    message: Schema should have a description
+    severity: hint
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+
+  uo-schema-properties-examples:
+    description: Schema properties should include examples
+    message: Schema property should have an example value
+    severity: hint
+    given: $.components.schemas[*].properties[*]
+    then:
+      field: example
+      function: truthy
+
+  # Security Rules
+  uo-security-schemes-defined:
+    description: API must define security schemes
+    message: Security schemes must be defined in components
+    severity: error
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+
+  uo-global-security-present:
+    description: API should define global security requirements
+    message: Global security array should be defined
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: truthy
+
+  # HTTP Method Rules
+  uo-get-no-request-body:
+    description: GET operations should not have a request body
+    message: GET operation should not have a request body
+    severity: warn
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy
+
+  uo-delete-no-body:
+    description: DELETE operations should not have a request body
+    message: DELETE operation should not have a request body
+    severity: hint
+    given: $.paths[*].delete
+    then:
+      field: requestBody
+      function: falsy
+
+  # Affiliate-Specific Rules
+  uo-affiliate-tracking-url:
+    description: Affiliate product responses should include affiliate URLs
+    message: Affiliate API product schema should include affiliateUrl field
+    severity: hint
+    given: $.components.schemas.Product.properties
+    then:
+      field: affiliateUrl
+      function: truthy
+
+  uo-commission-rate-defined:
+    description: Commission reports should include commission rate
+    message: CommissionReport schema should define commissionRate
+    severity: hint
+    given: $.components.schemas.CommissionReport.properties
+    then:
+      field: commissionRate
+      function: truthy
+
+  # Marketplace-Specific Rules
+  uo-seller-product-sku:
+    description: Seller products must include a SKU
+    message: SellerProduct schema must include sku field
+    severity: error
+    given: $.components.schemas.SellerProduct.properties
+    then:
+      field: sku
+      function: truthy
+
+  uo-order-status-enum:
+    description: Order status should use predefined values
+    message: Order status field should define an enum
+    severity: warn
+    given: $.components.schemas.Order.properties.status
+    then:
+      field: enum
+      function: truthy
+
+  # Quality Rules
+  uo-microcks-operation-present:
+    description: Operations should include Microcks extension for mocking
+    message: Operation should have x-microcks-operation extension
+    severity: hint
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: x-microcks-operation
+      function: truthy
+
+  uo-examples-in-responses:
+    description: Responses should include examples for documentation
+    message: Response content should include examples
+    severity: hint
+    given: $.paths[*][get,post,put,patch,delete].responses[*].content[*]
+    then:
+      field: examples
+      function: truthy

@@ -1,0 +1,9 @@
+{
+  "id": "item-abc123",
+  "type": "banner",
+  "size": "example-string",
+  "imageUrl": "https://example.com/image.jpg",
+  "clickUrl": "https://example.com/image.jpg",
+  "startDate": "2025-03-15T14:30:00Z",
+  "endDate": "2025-03-15T14:30:00Z"
+}

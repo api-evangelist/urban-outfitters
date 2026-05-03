@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-schema/affiliate-api-creative-schema.json",
+  "title": "Creative",
+  "description": "An affiliate creative asset (banner, text link, etc.)",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Creative identifier",
+      "example": "banner-abc123"
+    },
+    "type": {
+      "type": "string",
+      "description": "Creative type",
+      "enum": [
+        "banner",
+        "text_link",
+        "product_link"
+      ],
+      "example": "banner"
+    },
+    "size": {
+      "type": "string",
+      "description": "Banner dimensions",
+      "example": "300x250"
+    },
+    "imageUrl": {
+      "type": "string",
+      "description": "Banner image URL",
+      "example": "https://media.rakutenadvertising.com/uo-banner-300x250.jpg"
+    },
+    "clickUrl": {
+      "type": "string",
+      "description": "Click-through URL with tracking",
+      "example": "https://click.linksynergy.com/fs-bin/click?id=aff-abc123&offerid=788395"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Creative activation date",
+      "example": "2025-01-01"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Creative expiration date",
+      "example": "2025-06-30"
+    }
+  }
+}

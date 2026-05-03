@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-structure/marketplace-api-seller-product-structure.json",
+  "name": "SellerProduct",
+  "description": "A seller product listing on the Urban Outfitters marketplace",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Marketplace product identifier",
+      "example": "seller-prod-001"
+    },
+    "sku": {
+      "type": "string",
+      "description": "Seller SKU / product identifier",
+      "example": "UO-BRAND-TEE-001"
+    },
+    "name": {
+      "type": "string",
+      "description": "Product name",
+      "example": "Indie Brand Graphic Tee"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description",
+      "example": "Handcrafted screenprinted tee"
+    },
+    "price": {
+      "type": "double",
+      "description": "Product retail price",
+      "example": 45.0
+    },
+    "currency": {
+      "type": "string",
+      "description": "Price currency",
+      "example": "USD"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category",
+      "example": "womens"
+    },
+    "status": {
+      "type": "string",
+      "description": "Listing status",
+      "enum": [
+        "active",
+        "inactive",
+        "pending_review",
+        "rejected"
+      ],
+      "example": "active"
+    },
+    "inventoryQuantity": {
+      "type": "int32",
+      "description": "Available inventory",
+      "example": 250
+    },
+    "imageUrls": {
+      "type": "array",
+      "description": "Product image URLs",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "https://cdn.seller.com/product-image-1.jpg"
+      ]
+    }
+  }
+}

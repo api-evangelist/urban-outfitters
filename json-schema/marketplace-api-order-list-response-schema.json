@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-schema/marketplace-api-order-list-response-schema.json",
+  "title": "OrderListResponse",
+  "description": "Paginated list of marketplace orders",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "example": 35
+    },
+    "orders": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Order"
+      }
+    }
+  }
+}

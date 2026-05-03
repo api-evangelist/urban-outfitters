@@ -1,0 +1,644 @@
+openapi: 3.0.3
+info:
+  title: Urban Outfitters Marketplace API
+  description: >-
+    Integration API for the Urban Outfitters curated third-party marketplace (UO MRKT).
+    Independent brands and sellers can list products, manage inventory, receive orders,
+    and update shipment tracking through EDI or third-party integration platforms
+    such as ConnectPointz, SellerCloud, and e-tailize. This spec represents the
+    conceptual API surface for marketplace sellers.
+  version: '1.0.0'
+  contact:
+    name: Urban Outfitters Marketplace Support
+    url: https://www.urbanoutfitters.com/mrkt-seller-form
+  x-generated-from: documentation
+externalDocs:
+  description: Urban Outfitters Marketplace Seller Form
+  url: https://www.urbanoutfitters.com/mrkt-seller-form
+servers:
+  - url: https://marketplace.urbanoutfitters.com/api
+    description: Urban Outfitters Marketplace API
+tags:
+  - name: Products
+    description: Seller product catalog management
+  - name: Inventory
+    description: Inventory level management
+  - name: Orders
+    description: Order retrieval and management
+  - name: Shipments
+    description: Shipment and fulfillment tracking
+security:
+  - apiKeyAuth: []
+paths:
+  /v1/products:
+    get:
+      operationId: listSellerProducts
+      summary: Urban Outfitters List Seller Products
+      description: >-
+        Retrieve the authenticated seller's product listings on the
+        Urban Outfitters marketplace.
+      tags:
+        - Products
+      parameters:
+        - name: status
+          in: query
+          description: Filter products by status
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+              - pending_review
+          example: "active"
+        - name: limit
+          in: query
+          description: Maximum products to return
+          schema:
+            type: integer
+            default: 50
+          example: 50
+        - name: offset
+          in: query
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+          example: 0
+      responses:
+        '200':
+          description: Seller product listings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SellerProductListResponse'
+              examples:
+                listSellerProducts200Example:
+                  summary: Default listSellerProducts 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 150
+                    products:
+                      - id: "seller-prod-001"
+                        sku: "UO-BRAND-TEE-001"
+                        name: "Indie Brand Graphic Tee"
+                        price: 45.00
+                        currency: "USD"
+                        status: "active"
+                        inventoryQuantity: 250
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+    post:
+      operationId: createSellerProduct
+      summary: Urban Outfitters Create Seller Product
+      description: >-
+        Submit a new product listing to the Urban Outfitters marketplace for review.
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerProductCreate'
+            examples:
+              createSellerProductRequestExample:
+                summary: Default createSellerProduct request
+                x-microcks-default: true
+                value:
+                  sku: "BRAND-NEW-ITEM-001"
+                  name: "New Indie Brand Item"
+                  description: "Handcrafted artisan product"
+                  price: 55.00
+                  currency: "USD"
+                  category: "womens"
+      responses:
+        '201':
+          description: Product listing created and submitted for review
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SellerProduct'
+              examples:
+                createSellerProduct201Example:
+                  summary: Default createSellerProduct 201 response
+                  x-microcks-default: true
+                  value:
+                    id: "seller-prod-002"
+                    sku: "BRAND-NEW-ITEM-001"
+                    name: "New Indie Brand Item"
+                    status: "pending_review"
+        '400':
+          description: Invalid product data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /v1/inventory:
+    put:
+      operationId: updateInventory
+      summary: Urban Outfitters Update Inventory
+      description: >-
+        Update inventory levels for one or more seller products on the
+        Urban Outfitters marketplace.
+      tags:
+        - Inventory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryUpdate'
+            examples:
+              updateInventoryRequestExample:
+                summary: Default updateInventory request
+                x-microcks-default: true
+                value:
+                  updates:
+                    - sku: "UO-BRAND-TEE-001"
+                      quantity: 300
+                    - sku: "UO-BRAND-JACKET-002"
+                      quantity: 45
+      responses:
+        '200':
+          description: Inventory updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryUpdateResponse'
+              examples:
+                updateInventory200Example:
+                  summary: Default updateInventory 200 response
+                  x-microcks-default: true
+                  value:
+                    updated: 2
+                    failed: 0
+                    results:
+                      - sku: "UO-BRAND-TEE-001"
+                        status: "updated"
+                        quantity: 300
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /v1/orders:
+    get:
+      operationId: listOrders
+      summary: Urban Outfitters List Marketplace Orders
+      description: >-
+        Retrieve orders from the Urban Outfitters marketplace for the
+        authenticated seller.
+      tags:
+        - Orders
+      parameters:
+        - name: status
+          in: query
+          description: Filter by order status
+          schema:
+            type: string
+            enum:
+              - pending
+              - acknowledged
+              - shipped
+              - delivered
+              - cancelled
+          example: "pending"
+        - name: start_date
+          in: query
+          description: Filter orders from this date
+          schema:
+            type: string
+            format: date
+          example: "2025-01-01"
+        - name: limit
+          in: query
+          description: Maximum orders to return
+          schema:
+            type: integer
+            default: 20
+          example: 20
+      responses:
+        '200':
+          description: List of marketplace orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse'
+              examples:
+                listOrders200Example:
+                  summary: Default listOrders 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 35
+                    orders:
+                      - id: "order-xyz789"
+                        status: "pending"
+                        createdAt: "2025-03-15T14:30:00Z"
+                        items:
+                          - sku: "UO-BRAND-TEE-001"
+                            quantity: 2
+                            price: 45.00
+                        shippingAddress:
+                          name: "Jane Smith"
+                          city: "New York"
+                          state: "NY"
+                          country: "US"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /v1/orders/{order_id}/shipments:
+    post:
+      operationId: createShipment
+      summary: Urban Outfitters Create Shipment
+      description: >-
+        Submit shipment tracking information for a fulfilled marketplace order.
+      tags:
+        - Shipments
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          description: The order identifier
+          schema:
+            type: string
+          example: "order-xyz789"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentCreate'
+            examples:
+              createShipmentRequestExample:
+                summary: Default createShipment request
+                x-microcks-default: true
+                value:
+                  carrier: "UPS"
+                  trackingNumber: "1Z999AA10123456784"
+                  estimatedDelivery: "2025-03-20"
+      responses:
+        '201':
+          description: Shipment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+              examples:
+                createShipment201Example:
+                  summary: Default createShipment 201 response
+                  x-microcks-default: true
+                  value:
+                    id: "shipment-abc123"
+                    orderId: "order-xyz789"
+                    carrier: "UPS"
+                    trackingNumber: "1Z999AA10123456784"
+                    status: "shipped"
+                    createdAt: "2025-03-17T09:00:00Z"
+        '404':
+          description: Order not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Seller-API-Key
+      description: Seller API key provided by Urban Outfitters marketplace onboarding
+
+  schemas:
+    SellerProduct:
+      type: object
+      description: A seller product listing on the Urban Outfitters marketplace
+      properties:
+        id:
+          type: string
+          description: Marketplace product identifier
+          example: "seller-prod-001"
+        sku:
+          type: string
+          description: Seller SKU / product identifier
+          example: "UO-BRAND-TEE-001"
+        name:
+          type: string
+          description: Product name
+          example: "Indie Brand Graphic Tee"
+        description:
+          type: string
+          description: Product description
+          example: "Handcrafted screenprinted tee"
+        price:
+          type: number
+          description: Product retail price
+          example: 45.00
+        currency:
+          type: string
+          description: Price currency
+          example: "USD"
+        category:
+          type: string
+          description: Product category
+          example: "womens"
+        status:
+          type: string
+          description: Listing status
+          enum:
+            - active
+            - inactive
+            - pending_review
+            - rejected
+          example: "active"
+        inventoryQuantity:
+          type: integer
+          description: Available inventory
+          example: 250
+        imageUrls:
+          type: array
+          description: Product image URLs
+          items:
+            type: string
+          example: ["https://cdn.seller.com/product-image-1.jpg"]
+
+    SellerProductCreate:
+      type: object
+      description: Request body for creating a product listing
+      required:
+        - sku
+        - name
+        - price
+        - currency
+      properties:
+        sku:
+          type: string
+          example: "BRAND-NEW-ITEM-001"
+        name:
+          type: string
+          example: "New Product Name"
+        description:
+          type: string
+          example: "Product description"
+        price:
+          type: number
+          example: 55.00
+        currency:
+          type: string
+          example: "USD"
+        category:
+          type: string
+          example: "womens"
+
+    SellerProductListResponse:
+      type: object
+      description: Paginated seller product listings
+      properties:
+        total:
+          type: integer
+          example: 150
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/SellerProduct'
+
+    InventoryUpdate:
+      type: object
+      description: Inventory update request
+      required:
+        - updates
+      properties:
+        updates:
+          type: array
+          description: List of SKU inventory updates
+          items:
+            type: object
+            properties:
+              sku:
+                type: string
+                example: "UO-BRAND-TEE-001"
+              quantity:
+                type: integer
+                example: 300
+
+    InventoryUpdateResponse:
+      type: object
+      description: Result of inventory update
+      properties:
+        updated:
+          type: integer
+          description: Number of successfully updated SKUs
+          example: 2
+        failed:
+          type: integer
+          description: Number of failed updates
+          example: 0
+        results:
+          type: array
+          description: Per-SKU update results
+          items:
+            type: object
+            properties:
+              sku:
+                type: string
+                example: "UO-BRAND-TEE-001"
+              status:
+                type: string
+                example: "updated"
+              quantity:
+                type: integer
+                example: 300
+
+    Order:
+      type: object
+      description: A marketplace order from Urban Outfitters
+      properties:
+        id:
+          type: string
+          description: Order identifier
+          example: "order-xyz789"
+        status:
+          type: string
+          description: Order status
+          enum:
+            - pending
+            - acknowledged
+            - shipped
+            - delivered
+            - cancelled
+          example: "pending"
+        createdAt:
+          type: string
+          format: date-time
+          description: Order creation time
+          example: "2025-03-15T14:30:00Z"
+        items:
+          type: array
+          description: Ordered items
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        shippingAddress:
+          $ref: '#/components/schemas/ShippingAddress'
+        total:
+          type: number
+          description: Order total
+          example: 90.00
+        currency:
+          type: string
+          example: "USD"
+
+    OrderItem:
+      type: object
+      description: An item in a marketplace order
+      properties:
+        sku:
+          type: string
+          example: "UO-BRAND-TEE-001"
+        quantity:
+          type: integer
+          example: 2
+        price:
+          type: number
+          example: 45.00
+
+    OrderListResponse:
+      type: object
+      description: Paginated list of marketplace orders
+      properties:
+        total:
+          type: integer
+          example: 35
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+
+    ShippingAddress:
+      type: object
+      description: A shipping destination address
+      properties:
+        name:
+          type: string
+          example: "Jane Smith"
+        address1:
+          type: string
+          example: "123 Main St"
+        address2:
+          type: string
+          example: "Apt 4B"
+        city:
+          type: string
+          example: "New York"
+        state:
+          type: string
+          example: "NY"
+        postalCode:
+          type: string
+          example: "10001"
+        country:
+          type: string
+          example: "US"
+
+    Shipment:
+      type: object
+      description: Shipment record for a fulfilled order
+      properties:
+        id:
+          type: string
+          description: Shipment identifier
+          example: "shipment-abc123"
+        orderId:
+          type: string
+          description: Associated order identifier
+          example: "order-xyz789"
+        carrier:
+          type: string
+          description: Shipping carrier
+          example: "UPS"
+        trackingNumber:
+          type: string
+          description: Carrier tracking number
+          example: "1Z999AA10123456784"
+        status:
+          type: string
+          description: Shipment status
+          enum:
+            - shipped
+            - in_transit
+            - delivered
+          example: "shipped"
+        createdAt:
+          type: string
+          format: date-time
+          description: Shipment creation time
+          example: "2025-03-17T09:00:00Z"
+        estimatedDelivery:
+          type: string
+          format: date
+          description: Estimated delivery date
+          example: "2025-03-20"
+
+    ShipmentCreate:
+      type: object
+      description: Request to create a shipment record
+      required:
+        - carrier
+        - trackingNumber
+      properties:
+        carrier:
+          type: string
+          example: "UPS"
+        trackingNumber:
+          type: string
+          example: "1Z999AA10123456784"
+        estimatedDelivery:
+          type: string
+          format: date
+          example: "2025-03-20"
+
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          example: "unauthorized"
+        message:
+          type: string
+          example: "Invalid API key."
+        code:
+          type: integer
+          example: 401

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-schema/marketplace-api-seller-product-create-schema.json",
+  "title": "SellerProductCreate",
+  "description": "Request body for creating a product listing",
+  "type": "object",
+  "properties": {
+    "sku": {
+      "type": "string",
+      "example": "BRAND-NEW-ITEM-001"
+    },
+    "name": {
+      "type": "string",
+      "example": "New Product Name"
+    },
+    "description": {
+      "type": "string",
+      "example": "Product description"
+    },
+    "price": {
+      "type": "number",
+      "example": 55.0
+    },
+    "currency": {
+      "type": "string",
+      "example": "USD"
+    },
+    "category": {
+      "type": "string",
+      "example": "womens"
+    }
+  },
+  "required": [
+    "sku",
+    "name",
+    "price",
+    "currency"
+  ]
+}

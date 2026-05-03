@@ -1,0 +1,11 @@
+{
+  "id": "item-abc123",
+  "status": "pending",
+  "createdAt": "2025-03-15T14:30:00Z",
+  "items": [
+    "example-string"
+  ],
+  "shippingAddress": "123 Main St",
+  "total": 29.0,
+  "currency": "USD"
+}

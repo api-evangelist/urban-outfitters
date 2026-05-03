@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-structure/affiliate-api-creative-list-response-structure.json",
+  "name": "CreativeListResponse",
+  "description": "List of creative assets",
+  "type": "object",
+  "properties": {
+    "creatives": {
+      "type": "array",
+      "description": "Available creative assets",
+      "items": {
+        "$ref": "#/components/schemas/Creative"
+      }
+    }
+  }
+}

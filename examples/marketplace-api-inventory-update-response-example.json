@@ -1,0 +1,11 @@
+{
+  "updated": 1,
+  "failed": 1,
+  "results": [
+    {
+      "sku": "UO-BRAND-001",
+      "status": "active",
+      "quantity": 10
+    }
+  ]
+}

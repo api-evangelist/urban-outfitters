@@ -1,0 +1,8 @@
+{
+  "sku": "UO-BRAND-001",
+  "name": "Urban Outfitters Product",
+  "description": "Sample product description",
+  "price": 29.0,
+  "currency": "USD",
+  "category": "womens"
+}

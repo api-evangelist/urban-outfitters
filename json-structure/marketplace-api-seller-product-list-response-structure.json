@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-structure/marketplace-api-seller-product-list-response-structure.json",
+  "name": "SellerProductListResponse",
+  "description": "Paginated seller product listings",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "int32",
+      "example": 150
+    },
+    "offset": {
+      "type": "int32",
+      "example": 0
+    },
+    "limit": {
+      "type": "int32",
+      "example": 50
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SellerProduct"
+      }
+    }
+  }
+}

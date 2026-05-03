@@ -1,0 +1,16 @@
+{
+  "id": "item-abc123",
+  "name": "Urban Outfitters Product",
+  "description": "Sample product description",
+  "price": 29.0,
+  "salePrice": 29.0,
+  "currency": "USD",
+  "category": "womens",
+  "brand": "example-string",
+  "imageUrl": "https://example.com/image.jpg",
+  "affiliateUrl": "https://example.com/image.jpg",
+  "inStock": true,
+  "sizes": [
+    "example-string"
+  ]
+}

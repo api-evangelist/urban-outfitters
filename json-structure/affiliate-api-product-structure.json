@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-structure/affiliate-api-product-structure.json",
+  "name": "Product",
+  "description": "A product available in the Urban Outfitters catalog",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique product identifier",
+      "example": "prod-12345"
+    },
+    "name": {
+      "type": "string",
+      "description": "Product name",
+      "example": "Graphic Tee - Earth Day"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description",
+      "example": "Relaxed-fit graphic tee in 100% cotton"
+    },
+    "price": {
+      "type": "double",
+      "description": "Product price",
+      "example": 29.0
+    },
+    "salePrice": {
+      "type": "double",
+      "description": "Sale price if on sale",
+      "example": 19.99
+    },
+    "currency": {
+      "type": "string",
+      "description": "Price currency",
+      "example": "USD"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category",
+      "enum": [
+        "womens",
+        "mens",
+        "home",
+        "accessories",
+        "beauty",
+        "kids"
+      ],
+      "example": "womens"
+    },
+    "brand": {
+      "type": "string",
+      "description": "Brand name",
+      "example": "Urban Outfitters"
+    },
+    "imageUrl": {
+      "type": "string",
+      "description": "Primary product image URL",
+      "example": "https://images.urbndata.com/is/image/UrbanOutfitters/prod-12345"
+    },
+    "affiliateUrl": {
+      "type": "string",
+      "description": "Affiliate deep link for the product",
+      "example": "https://click.linksynergy.com/link?id=aff-abc123&offerid=788395"
+    },
+    "inStock": {
+      "type": "boolean",
+      "description": "Whether the product is in stock",
+      "example": true
+    },
+    "sizes": {
+      "type": "array",
+      "description": "Available sizes",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    }
+  }
+}

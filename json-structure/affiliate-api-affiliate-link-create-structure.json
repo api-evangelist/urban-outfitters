@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-structure/affiliate-api-affiliate-link-create-structure.json",
+  "name": "AffiliateLinkCreate",
+  "description": "Request to create an affiliate link",
+  "type": "object",
+  "properties": {
+    "targetUrl": {
+      "type": "string",
+      "description": "The Urban Outfitters URL to create an affiliate link for",
+      "example": "https://www.urbanoutfitters.com/shop/prod-12345"
+    },
+    "affiliateId": {
+      "type": "string",
+      "description": "Affiliate account identifier",
+      "example": "aff-abc123"
+    }
+  },
+  "required": [
+    "targetUrl",
+    "affiliateId"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-schema/affiliate-api-affiliate-link-schema.json",
+  "title": "AffiliateLink",
+  "description": "A generated affiliate tracking link",
+  "type": "object",
+  "properties": {
+    "affiliateUrl": {
+      "type": "string",
+      "description": "The affiliate tracking URL to use in promotions",
+      "example": "https://click.linksynergy.com/link?id=aff-abc123&offerid=788395"
+    },
+    "trackingId": {
+      "type": "string",
+      "description": "Unique tracking identifier for this link",
+      "example": "track-xyz789"
+    },
+    "targetUrl": {
+      "type": "string",
+      "description": "The original target URL being linked",
+      "example": "https://www.urbanoutfitters.com/shop/prod-12345"
+    }
+  }
+}

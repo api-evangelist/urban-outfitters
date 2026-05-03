@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-schema/marketplace-api-shipment-create-schema.json",
+  "title": "ShipmentCreate",
+  "description": "Request to create a shipment record",
+  "type": "object",
+  "properties": {
+    "carrier": {
+      "type": "string",
+      "example": "UPS"
+    },
+    "trackingNumber": {
+      "type": "string",
+      "example": "1Z999AA10123456784"
+    },
+    "estimatedDelivery": {
+      "type": "string",
+      "format": "date",
+      "example": "2025-03-20"
+    }
+  },
+  "required": [
+    "carrier",
+    "trackingNumber"
+  ]
+}

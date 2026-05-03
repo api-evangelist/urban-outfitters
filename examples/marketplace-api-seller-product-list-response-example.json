@@ -1,0 +1,8 @@
+{
+  "total": 10,
+  "offset": 1,
+  "limit": 1,
+  "products": [
+    "example-string"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "id": "item-abc123",
+  "orderId": "example-string",
+  "carrier": "UPS",
+  "trackingNumber": "1Z999AA10123456784",
+  "status": "shipped",
+  "createdAt": "2025-03-15T14:30:00Z",
+  "estimatedDelivery": "2025-03-15"
+}

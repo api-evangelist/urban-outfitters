@@ -1,0 +1,13 @@
+{
+  "affiliateId": "aff-abc123",
+  "period": {
+    "start": "2025-03-15",
+    "end": "2025-03-15"
+  },
+  "totalClicks": 10,
+  "totalSales": 10,
+  "totalRevenue": 29.0,
+  "totalCommission": 29.0,
+  "commissionRate": 29.0,
+  "currency": "USD"
+}

@@ -1,0 +1,97 @@
+info:
+  title: Urban Outfitters Vocabulary
+  description: >-
+    Unified taxonomy mapping resources, actions, workflows, and personas across
+    the Urban Outfitters affiliate and marketplace API operational and capability
+    dimensions.
+  version: '1.0.0'
+
+operational:
+  resources:
+    - name: Product
+      description: A product available in the Urban Outfitters catalog for affiliate promotion or marketplace sale
+      aliases: [item, listing, catalog-item]
+    - name: SellerProduct
+      description: A product listing submitted by a marketplace seller on UO MRKT
+      aliases: [seller-listing, marketplace-product]
+    - name: AffiliateLink
+      description: A tracking URL generated for affiliate promotion of Urban Outfitters products
+      aliases: [tracking-link, deep-link, referral-link]
+    - name: CommissionReport
+      description: Earnings and performance report for an affiliate account over a date range
+      aliases: [earnings-report, affiliate-report, performance-report]
+    - name: Creative
+      description: A banner ad or creative asset available for affiliate promotion
+      aliases: [banner, ad-creative, promotional-asset]
+    - name: Inventory
+      description: Stock levels for seller products listed on the Urban Outfitters marketplace
+      aliases: [stock, inventory-level]
+    - name: Order
+      description: A purchase order for marketplace seller products from Urban Outfitters customers
+      aliases: [purchase-order, marketplace-order]
+    - name: OrderItem
+      description: An individual line item within a marketplace order
+      aliases: [line-item, order-line]
+    - name: Shipment
+      description: Shipping and tracking record for a fulfilled marketplace order
+      aliases: [fulfillment, tracking-record, shipping-record]
+    - name: ShippingAddress
+      description: A delivery destination address for a marketplace order
+      aliases: [delivery-address, destination]
+  actions:
+    - name: Search
+      description: Query the product catalog for matching items
+      httpMethod: GET
+      aliases: [find, query, lookup]
+    - name: Get
+      description: Retrieve a specific resource by identifier
+      httpMethod: GET
+      aliases: [fetch, retrieve, read]
+    - name: List
+      description: Retrieve a paginated collection of resources
+      httpMethod: GET
+      aliases: [index, browse, paginate]
+    - name: Create
+      description: Submit a new resource to the system
+      httpMethod: POST
+      aliases: [add, submit, register, post]
+    - name: Update
+      description: Modify an existing resource
+      httpMethod: PUT
+      aliases: [edit, set, sync]
+    - name: Report
+      description: Retrieve aggregated reporting or analytics data
+      httpMethod: GET
+      aliases: [analyze, summarize, aggregate]
+
+capability:
+  workflows:
+    - name: Retail Commerce
+      description: >-
+        End-to-end retail commerce workflow combining affiliate marketing and
+        marketplace seller management for the Urban Outfitters ecosystem
+      apis:
+        - Affiliate API
+        - Marketplace API
+  personas:
+    - name: Affiliate Partner
+      description: Content creators, bloggers, and influencers promoting Urban Outfitters products for commission
+      goals:
+        - Discover products to promote
+        - Generate affiliate tracking links
+        - Monitor commission earnings
+        - Access creative assets for promotions
+    - name: Marketplace Seller
+      description: Independent fashion and lifestyle brands selling through the UO MRKT marketplace
+      goals:
+        - List and manage product catalog
+        - Sync inventory levels
+        - Receive and fulfill orders
+        - Submit shipment tracking
+    - name: Developer
+      description: Developers integrating Urban Outfitters affiliate or marketplace APIs into applications
+      goals:
+        - Automate product feed integration
+        - Build affiliate link management tools
+        - Integrate marketplace order processing
+        - Create inventory management dashboards

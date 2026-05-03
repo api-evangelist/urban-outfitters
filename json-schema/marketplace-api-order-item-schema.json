@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-schema/marketplace-api-order-item-schema.json",
+  "title": "OrderItem",
+  "description": "An item in a marketplace order",
+  "type": "object",
+  "properties": {
+    "sku": {
+      "type": "string",
+      "example": "UO-BRAND-TEE-001"
+    },
+    "quantity": {
+      "type": "integer",
+      "example": 2
+    },
+    "price": {
+      "type": "number",
+      "example": 45.0
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-structure/marketplace-api-inventory-update-structure.json",
+  "name": "InventoryUpdate",
+  "description": "Inventory update request",
+  "type": "object",
+  "properties": {
+    "updates": {
+      "type": "array",
+      "description": "List of SKU inventory updates",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "example": "UO-BRAND-TEE-001"
+          },
+          "quantity": {
+            "type": "int32",
+            "example": 300
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "updates"
+  ]
+}

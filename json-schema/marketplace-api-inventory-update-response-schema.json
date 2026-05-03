@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-schema/marketplace-api-inventory-update-response-schema.json",
+  "title": "InventoryUpdateResponse",
+  "description": "Result of inventory update",
+  "type": "object",
+  "properties": {
+    "updated": {
+      "type": "integer",
+      "description": "Number of successfully updated SKUs",
+      "example": 2
+    },
+    "failed": {
+      "type": "integer",
+      "description": "Number of failed updates",
+      "example": 0
+    },
+    "results": {
+      "type": "array",
+      "description": "Per-SKU update results",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "example": "UO-BRAND-TEE-001"
+          },
+          "status": {
+            "type": "string",
+            "example": "updated"
+          },
+          "quantity": {
+            "type": "integer",
+            "example": 300
+          }
+        }
+      }
+    }
+  }
+}

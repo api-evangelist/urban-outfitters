@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/json-structure/marketplace-api-order-structure.json",
+  "name": "Order",
+  "description": "A marketplace order from Urban Outfitters",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Order identifier",
+      "example": "order-xyz789"
+    },
+    "status": {
+      "type": "string",
+      "description": "Order status",
+      "enum": [
+        "pending",
+        "acknowledged",
+        "shipped",
+        "delivered",
+        "cancelled"
+      ],
+      "example": "pending"
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "Order creation time",
+      "example": "2025-03-15T14:30:00Z"
+    },
+    "items": {
+      "type": "array",
+      "description": "Ordered items",
+      "items": {
+        "$ref": "#/components/schemas/OrderItem"
+      }
+    },
+    "shippingAddress": {
+      "$ref": "#/components/schemas/ShippingAddress"
+    },
+    "total": {
+      "type": "double",
+      "description": "Order total",
+      "example": 90.0
+    },
+    "currency": {
+      "type": "string",
+      "example": "USD"
+    }
+  }
+}
