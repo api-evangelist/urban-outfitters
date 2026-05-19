@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Urban Outfitters Marketplace API — Shipments
+  description: 'Urban Outfitters Marketplace API — Shipments. 1 operations. Lead operation: Urban Outfitters Create Shipment.
+    Self-contained Naftiko capability covering one Urban Outfitters business surface.'
+  tags:
+  - Urban Outfitters
+  - Shipments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    URBAN_OUTFITTERS_API_KEY: URBAN_OUTFITTERS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketplace-shipments
+    baseUri: https://marketplace.urbanoutfitters.com/api
+    description: Urban Outfitters Marketplace API — Shipments business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-orders-order_id-shipments
+      path: /v1/orders/{order_id}/shipments
+      operations:
+      - name: createshipment
+        method: POST
+        description: Urban Outfitters Create Shipment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: The order identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Seller-API-Key
+      value: '{{env.URBAN_OUTFITTERS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: marketplace-shipments-rest
+    port: 8080
+    description: REST adapter for Urban Outfitters Marketplace API — Shipments. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/orders/{order-id}/shipments
+      name: v1-orders-order-id-shipments
+      description: REST surface for v1-orders-order_id-shipments.
+      operations:
+      - method: POST
+        name: createshipment
+        description: Urban Outfitters Create Shipment
+        call: marketplace-shipments.createshipment
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketplace-shipments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Urban Outfitters Marketplace API — Shipments. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: urban-outfitters-create-shipment
+      description: Urban Outfitters Create Shipment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketplace-shipments.createshipment
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

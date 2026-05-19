@@ -1,0 +1,141 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Urban Outfitters Affiliate API — Products
+  description: 'Urban Outfitters Affiliate API — Products. 2 operations. Lead operation: Urban Outfitters Search Products.
+    Self-contained Naftiko capability covering one Urban Outfitters business surface.'
+  tags:
+  - Urban Outfitters
+  - Products
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    URBAN_OUTFITTERS_API_KEY: URBAN_OUTFITTERS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: affiliate-products
+    baseUri: https://api.rakutenadvertising.com
+    description: Urban Outfitters Affiliate API — Products business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-products
+      path: /v1/products
+      operations:
+      - name: searchproducts
+        method: GET
+        description: Urban Outfitters Search Products
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Search query string
+        - name: category
+          in: query
+          type: string
+          description: Product category filter
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of products to return
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+    - name: v1-products-product_id
+      path: /v1/products/{product_id}
+      operations:
+      - name: getproduct
+        method: GET
+        description: Urban Outfitters Get Product Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: The unique product identifier
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.URBAN_OUTFITTERS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: affiliate-products-rest
+    port: 8080
+    description: REST adapter for Urban Outfitters Affiliate API — Products. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/products
+      name: v1-products
+      description: REST surface for v1-products.
+      operations:
+      - method: GET
+        name: searchproducts
+        description: Urban Outfitters Search Products
+        call: affiliate-products.searchproducts
+        with:
+          q: rest.q
+          category: rest.category
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/products/{product-id}
+      name: v1-products-product-id
+      description: REST surface for v1-products-product_id.
+      operations:
+      - method: GET
+        name: getproduct
+        description: Urban Outfitters Get Product Details
+        call: affiliate-products.getproduct
+        with:
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: affiliate-products-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Urban Outfitters Affiliate API — Products. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: urban-outfitters-search-products
+      description: Urban Outfitters Search Products
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: affiliate-products.searchproducts
+      with:
+        q: tools.q
+        category: tools.category
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: urban-outfitters-get-product-details
+      description: Urban Outfitters Get Product Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: affiliate-products.getproduct
+      with:
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.

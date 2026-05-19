@@ -1,0 +1,93 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Urban Outfitters Affiliate API — Reports
+  description: 'Urban Outfitters Affiliate API — Reports. 1 operations. Lead operation: Urban Outfitters Get Commission Report.
+    Self-contained Naftiko capability covering one Urban Outfitters business surface.'
+  tags:
+  - Urban Outfitters
+  - Reports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    URBAN_OUTFITTERS_API_KEY: URBAN_OUTFITTERS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: affiliate-reports
+    baseUri: https://api.rakutenadvertising.com
+    description: Urban Outfitters Affiliate API — Reports business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-reports-commissions
+      path: /v1/reports/commissions
+      operations:
+      - name: getcommissionreport
+        method: GET
+        description: Urban Outfitters Get Commission Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: start_date
+          in: query
+          type: string
+          description: Start date for the report period
+        - name: end_date
+          in: query
+          type: string
+          description: End date for the report period
+        - name: affiliate_id
+          in: query
+          type: string
+          description: Affiliate account identifier
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.URBAN_OUTFITTERS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: affiliate-reports-rest
+    port: 8080
+    description: REST adapter for Urban Outfitters Affiliate API — Reports. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/reports/commissions
+      name: v1-reports-commissions
+      description: REST surface for v1-reports-commissions.
+      operations:
+      - method: GET
+        name: getcommissionreport
+        description: Urban Outfitters Get Commission Report
+        call: affiliate-reports.getcommissionreport
+        with:
+          start_date: rest.start_date
+          end_date: rest.end_date
+          affiliate_id: rest.affiliate_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: affiliate-reports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Urban Outfitters Affiliate API — Reports. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: urban-outfitters-get-commission-report
+      description: Urban Outfitters Get Commission Report
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: affiliate-reports.getcommissionreport
+      with:
+        start_date: tools.start_date
+        end_date: tools.end_date
+        affiliate_id: tools.affiliate_id
+      outputParameters:
+      - type: object
+        mapping: $.

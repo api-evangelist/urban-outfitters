@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Urban Outfitters Marketplace API — Inventory
+  description: 'Urban Outfitters Marketplace API — Inventory. 1 operations. Lead operation: Urban Outfitters Update Inventory.
+    Self-contained Naftiko capability covering one Urban Outfitters business surface.'
+  tags:
+  - Urban Outfitters
+  - Inventory
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    URBAN_OUTFITTERS_API_KEY: URBAN_OUTFITTERS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketplace-inventory
+    baseUri: https://marketplace.urbanoutfitters.com/api
+    description: Urban Outfitters Marketplace API — Inventory business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-inventory
+      path: /v1/inventory
+      operations:
+      - name: updateinventory
+        method: PUT
+        description: Urban Outfitters Update Inventory
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Seller-API-Key
+      value: '{{env.URBAN_OUTFITTERS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: marketplace-inventory-rest
+    port: 8080
+    description: REST adapter for Urban Outfitters Marketplace API — Inventory. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/inventory
+      name: v1-inventory
+      description: REST surface for v1-inventory.
+      operations:
+      - method: PUT
+        name: updateinventory
+        description: Urban Outfitters Update Inventory
+        call: marketplace-inventory.updateinventory
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketplace-inventory-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Urban Outfitters Marketplace API — Inventory. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: urban-outfitters-update-inventory
+      description: Urban Outfitters Update Inventory
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketplace-inventory.updateinventory
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

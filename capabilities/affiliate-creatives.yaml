@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Urban Outfitters Affiliate API — Creatives
+  description: 'Urban Outfitters Affiliate API — Creatives. 1 operations. Lead operation: Urban Outfitters List Creative Assets.
+    Self-contained Naftiko capability covering one Urban Outfitters business surface.'
+  tags:
+  - Urban Outfitters
+  - Creatives
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    URBAN_OUTFITTERS_API_KEY: URBAN_OUTFITTERS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: affiliate-creatives
+    baseUri: https://api.rakutenadvertising.com
+    description: Urban Outfitters Affiliate API — Creatives business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-creatives
+      path: /v1/creatives
+      operations:
+      - name: listcreatives
+        method: GET
+        description: Urban Outfitters List Creative Assets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: size
+          in: query
+          type: string
+          description: Banner size filter
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.URBAN_OUTFITTERS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: affiliate-creatives-rest
+    port: 8080
+    description: REST adapter for Urban Outfitters Affiliate API — Creatives. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/creatives
+      name: v1-creatives
+      description: REST surface for v1-creatives.
+      operations:
+      - method: GET
+        name: listcreatives
+        description: Urban Outfitters List Creative Assets
+        call: affiliate-creatives.listcreatives
+        with:
+          size: rest.size
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: affiliate-creatives-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Urban Outfitters Affiliate API — Creatives. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: urban-outfitters-list-creative-assets
+      description: Urban Outfitters List Creative Assets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: affiliate-creatives.listcreatives
+      with:
+        size: tools.size
+      outputParameters:
+      - type: object
+        mapping: $.
