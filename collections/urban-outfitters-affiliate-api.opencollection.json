@@ -1,0 +1,171 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Urban Outfitters Affiliate API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Urban Outfitters Search Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rakutenadvertising.com/v1/products",
+            "params": [
+              {
+                "name": "q",
+                "value": "graphic tee",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "category",
+                "value": "womens",
+                "type": "query",
+                "description": "Product category filter"
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "Maximum number of products to return"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Search the Urban Outfitters product catalog for affiliate promotion. Returns product listings with prices, images, and deep link URLs."
+        },
+        {
+          "info": {
+            "name": "Urban Outfitters Get Product Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rakutenadvertising.com/v1/products/:product_id",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "prod-12345",
+                "type": "path",
+                "description": "The unique product identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific Urban Outfitters product including price, description, available sizes, and affiliate deep link."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Urban Outfitters Create Affiliate Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rakutenadvertising.com/v1/links",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate an affiliate tracking link for a specific Urban Outfitters product or page URL. The generated link includes affiliate tracking parameters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Urban Outfitters Get Commission Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rakutenadvertising.com/v1/reports/commissions",
+            "params": [
+              {
+                "name": "start_date",
+                "value": "2025-01-01",
+                "type": "query",
+                "description": "Start date for the report period"
+              },
+              {
+                "name": "end_date",
+                "value": "2025-03-31",
+                "type": "query",
+                "description": "End date for the report period"
+              },
+              {
+                "name": "affiliate_id",
+                "value": "aff-abc123",
+                "type": "query",
+                "description": "Affiliate account identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve commission earnings and performance metrics for an affiliate account within a specified date range."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Creatives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Urban Outfitters List Creative Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rakutenadvertising.com/v1/creatives",
+            "params": [
+              {
+                "name": "size",
+                "value": "300x250",
+                "type": "query",
+                "description": "Banner size filter"
+              }
+            ]
+          },
+          "docs": "Retrieve available banner ads and creative assets for affiliate promotion."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
