@@ -79,6 +79,10 @@ apis:
       - type: JSONSchema
         url: json-schema/marketplace-api-inventory-update-schema.json
 common:
+  - type: DomainSecurity
+    url: security/urban-outfitters-domain-security.yml
+  - type: Authentication
+    url: authentication/urban-outfitters-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/urban-outfitters
   - type: Website

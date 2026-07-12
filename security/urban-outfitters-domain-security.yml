@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.urban-outfitters.com
+  https: false
+- host: www.urbanoutfitters.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 12 23:59:59 2026 GMT
+  hsts: null
+- host: api.rakutenadvertising.com
+  https: false
+domains:
+- domain: urban-outfitters.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false
+- domain: urbanoutfitters.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

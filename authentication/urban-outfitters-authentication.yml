@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/urban-outfitters-affiliate-api-openapi.yml, openapi/urban-outfitters-marketplace-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Rakuten Advertising API key provided upon affiliate program enrollment. Include
+    as Bearer token in the Authorization header.
+  sources:
+  - openapi/urban-outfitters-affiliate-api-openapi.yml
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-Seller-API-Key
+  description: Seller API key provided by Urban Outfitters marketplace onboarding
+  sources:
+  - openapi/urban-outfitters-marketplace-api-openapi.yml
