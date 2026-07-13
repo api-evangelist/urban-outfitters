@@ -1,6 +1,22 @@
+# urban-outfitters — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - query-params-casing: snake @ 100% (n=14)
+#   - operationid-casing: camel @ 100% (n=10)
+#   - schema-names-casing: pascal @ 100% (n=20)
+#   - schema-properties-casing: snake @ 69% (n=96)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - error-schema-defined: APIError
+#   - pagination params observed: ['limit', 'offset', 'size']
+#   - merge: kept 31 existing, added 6 measured, upgraded 0
+#   - added: query-params-casing, operationid-casing, schema-names-casing, schema-properties-casing, error-schema-defined, no-empty-descriptions
+extends:
+  - spectral:oas
 rules:
-
-  # Info Rules
   uo-info-title-present:
     description: API info must have a title
     message: Info object must have a title
@@ -9,7 +25,6 @@ rules:
     then:
       field: title
       function: truthy
-
   uo-info-description-present:
     description: API info must have a description
     message: Info object must have a description
@@ -18,7 +33,6 @@ rules:
     then:
       field: description
       function: truthy
-
   uo-info-version-present:
     description: API info must have a version
     message: Info object must have a version
@@ -27,8 +41,6 @@ rules:
     then:
       field: version
       function: truthy
-
-  # OpenAPI Version Rules
   uo-openapi-version:
     description: Must use OpenAPI 3.x
     message: OpenAPI version must be 3.x
@@ -38,9 +50,7 @@ rules:
       field: openapi
       function: pattern
       functionOptions:
-        match: "^3\\."
-
-  # Server Rules
+        match: ^3\.
   uo-servers-present:
     description: API must define servers
     message: Servers array must be defined and non-empty
@@ -49,18 +59,15 @@ rules:
     then:
       field: servers
       function: truthy
-
   uo-server-url-https:
     description: Server URLs should use HTTPS
-    message: "Server URL should use HTTPS: {{value}}"
+    message: 'Server URL should use HTTPS: {{value}}'
     severity: warn
     given: $.servers[*].url
     then:
       function: pattern
       functionOptions:
-        match: "^https://"
-
-  # Path Rules
+        match: ^https://
   uo-paths-present:
     description: API must define paths
     message: Paths object must be defined and non-empty
@@ -69,18 +76,15 @@ rules:
     then:
       field: paths
       function: truthy
-
   uo-path-lowercase:
     description: Path segments should be lowercase
-    message: "Path should use lowercase letters: {{value}}"
+    message: 'Path should use lowercase letters: {{value}}'
     severity: warn
     given: $.paths[*]~
     then:
       function: pattern
       functionOptions:
-        match: "^/[a-z0-9/_{}.-]*$"
-
-  # Operation Rules
+        match: ^/[a-z0-9/_{}.-]*$
   uo-operation-id-present:
     description: All operations must have an operationId
     message: Operation must have an operationId
@@ -89,7 +93,6 @@ rules:
     then:
       field: operationId
       function: truthy
-
   uo-operation-summary-present:
     description: All operations must have a summary
     message: Operation must have a summary
@@ -98,7 +101,6 @@ rules:
     then:
       field: summary
       function: truthy
-
   uo-operation-description-present:
     description: All operations should have a description
     message: Operation should have a description
@@ -107,7 +109,6 @@ rules:
     then:
       field: description
       function: truthy
-
   uo-operation-tags-present:
     description: All operations must have at least one tag
     message: Operation must have at least one tag
@@ -116,8 +117,6 @@ rules:
     then:
       field: tags
       function: truthy
-
-  # Tag Rules
   uo-tags-defined:
     description: All tags used in operations should be defined at the top level
     message: Tags should be defined in the global tags array
@@ -126,8 +125,6 @@ rules:
     then:
       field: tags
       function: truthy
-
-  # Parameter Rules
   uo-parameter-description-present:
     description: All parameters should have a description
     message: Parameter must have a description
@@ -136,7 +133,6 @@ rules:
     then:
       field: description
       function: truthy
-
   uo-parameter-schema-present:
     description: All parameters must have a schema
     message: Parameter must have a schema
@@ -145,8 +141,6 @@ rules:
     then:
       field: schema
       function: truthy
-
-  # Request Body Rules
   uo-request-body-description:
     description: Request bodies should have a description
     message: Request body should have a description
@@ -155,8 +149,6 @@ rules:
     then:
       field: description
       function: truthy
-
-  # Response Rules
   uo-response-description-present:
     description: All responses must have a description
     message: Response must have a description
@@ -165,7 +157,6 @@ rules:
     then:
       field: description
       function: truthy
-
   uo-response-success-present:
     description: Operations must have at least one success (2xx) response
     message: Operation must define a 2xx response
@@ -177,11 +168,14 @@ rules:
         schema:
           type: object
           anyOf:
-            - required: ["200"]
-            - required: ["201"]
-            - required: ["202"]
-            - required: ["204"]
-
+          - required:
+            - '200'
+          - required:
+            - '201'
+          - required:
+            - '202'
+          - required:
+            - '204'
   uo-response-error-present:
     description: Operations should define error responses
     message: Operation should define at least one error response (4xx or 5xx)
@@ -193,13 +187,16 @@ rules:
         schema:
           type: object
           anyOf:
-            - required: ["400"]
-            - required: ["401"]
-            - required: ["403"]
-            - required: ["404"]
-            - required: ["500"]
-
-  # Schema Rules
+          - required:
+            - '400'
+          - required:
+            - '401'
+          - required:
+            - '403'
+          - required:
+            - '404'
+          - required:
+            - '500'
   uo-schema-description-present:
     description: All schemas should have a description
     message: Schema should have a description
@@ -208,7 +205,6 @@ rules:
     then:
       field: description
       function: truthy
-
   uo-schema-properties-examples:
     description: Schema properties should include examples
     message: Schema property should have an example value
@@ -217,8 +213,6 @@ rules:
     then:
       field: example
       function: truthy
-
-  # Security Rules
   uo-security-schemes-defined:
     description: API must define security schemes
     message: Security schemes must be defined in components
@@ -227,7 +221,6 @@ rules:
     then:
       field: securitySchemes
       function: truthy
-
   uo-global-security-present:
     description: API should define global security requirements
     message: Global security array should be defined
@@ -236,8 +229,6 @@ rules:
     then:
       field: security
       function: truthy
-
-  # HTTP Method Rules
   uo-get-no-request-body:
     description: GET operations should not have a request body
     message: GET operation should not have a request body
@@ -246,7 +237,6 @@ rules:
     then:
       field: requestBody
       function: falsy
-
   uo-delete-no-body:
     description: DELETE operations should not have a request body
     message: DELETE operation should not have a request body
@@ -255,8 +245,6 @@ rules:
     then:
       field: requestBody
       function: falsy
-
-  # Affiliate-Specific Rules
   uo-affiliate-tracking-url:
     description: Affiliate product responses should include affiliate URLs
     message: Affiliate API product schema should include affiliateUrl field
@@ -265,7 +253,6 @@ rules:
     then:
       field: affiliateUrl
       function: truthy
-
   uo-commission-rate-defined:
     description: Commission reports should include commission rate
     message: CommissionReport schema should define commissionRate
@@ -274,8 +261,6 @@ rules:
     then:
       field: commissionRate
       function: truthy
-
-  # Marketplace-Specific Rules
   uo-seller-product-sku:
     description: Seller products must include a SKU
     message: SellerProduct schema must include sku field
@@ -284,7 +269,6 @@ rules:
     then:
       field: sku
       function: truthy
-
   uo-order-status-enum:
     description: Order status should use predefined values
     message: Order status field should define an enum
@@ -293,8 +277,6 @@ rules:
     then:
       field: enum
       function: truthy
-
-  # Quality Rules
   uo-microcks-operation-present:
     description: Operations should include Microcks extension for mocking
     message: Operation should have x-microcks-operation extension
@@ -303,7 +285,6 @@ rules:
     then:
       field: x-microcks-operation
       function: truthy
-
   uo-examples-in-responses:
     description: Responses should include examples for documentation
     message: Response content should include examples
@@ -311,4 +292,52 @@ rules:
     given: $.paths[*][get,post,put,patch,delete].responses[*].content[*]
     then:
       field: examples
+      function: truthy
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
+  operationid-casing:
+    description: Operation IDs should be camelCase (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        match: ^[A-Z][A-Za-z0-9]*$
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: info
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  error-schema-defined:
+    description: A shared error schema (APIError) should be defined for error payloads.
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: APIError
+      function: truthy
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
       function: truthy
