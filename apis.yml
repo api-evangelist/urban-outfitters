@@ -79,6 +79,8 @@ apis:
       - type: JSONSchema
         url: json-schema/marketplace-api-inventory-update-schema.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/urban-outfitters-agentic-access.yml
   - type: DomainSecurity
     url: security/urban-outfitters-domain-security.yml
   - type: Authentication
