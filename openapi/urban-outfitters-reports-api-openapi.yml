@@ -1,0 +1,148 @@
+openapi: 3.0.3
+info:
+  title: Urban Outfitters Affiliate Creatives Reports API
+  description: The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.
+  version: 1.0.0
+  contact:
+    name: Urban Outfitters Affiliate Support
+    url: https://www.urbanoutfitters.com/help/affiliate
+  x-generated-from: documentation
+servers:
+- url: https://api.rakutenadvertising.com
+  description: Rakuten Advertising API (manages Urban Outfitters affiliate program)
+security:
+- apiKeyAuth: []
+tags:
+- name: Reports
+  description: Commission and performance reporting for affiliates
+paths:
+  /v1/reports/commissions:
+    get:
+      operationId: getCommissionReport
+      summary: Urban Outfitters Get Commission Report
+      description: Retrieve commission earnings and performance metrics for an affiliate account within a specified date range.
+      tags:
+      - Reports
+      parameters:
+      - name: start_date
+        in: query
+        description: Start date for the report period
+        schema:
+          type: string
+          format: date
+        example: '2025-01-01'
+      - name: end_date
+        in: query
+        description: End date for the report period
+        schema:
+          type: string
+          format: date
+        example: '2025-03-31'
+      - name: affiliate_id
+        in: query
+        description: Affiliate account identifier
+        schema:
+          type: string
+        example: aff-abc123
+      responses:
+        '200':
+          description: Commission report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommissionReport'
+              examples:
+                getCommissionReport200Example:
+                  summary: Default getCommissionReport 200 response
+                  x-microcks-default: true
+                  value:
+                    affiliateId: aff-abc123
+                    period:
+                      start: '2025-01-01'
+                      end: '2025-03-31'
+                    totalClicks: 1250
+                    totalSales: 48
+                    totalRevenue: 2400.0
+                    totalCommission: 48.0
+                    commissionRate: 0.02
+                    currency: USD
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    CommissionReport:
+      type: object
+      description: Commission earnings report for an affiliate
+      properties:
+        affiliateId:
+          type: string
+          description: Affiliate account identifier
+          example: aff-abc123
+        period:
+          type: object
+          description: Reporting period
+          properties:
+            start:
+              type: string
+              format: date
+              example: '2025-01-01'
+            end:
+              type: string
+              format: date
+              example: '2025-03-31'
+        totalClicks:
+          type: integer
+          description: Total affiliate link clicks
+          example: 1250
+        totalSales:
+          type: integer
+          description: Total confirmed sales attributed to affiliate
+          example: 48
+        totalRevenue:
+          type: number
+          description: Total revenue generated from affiliate sales
+          example: 2400.0
+        totalCommission:
+          type: number
+          description: Total commission earned
+          example: 48.0
+        commissionRate:
+          type: number
+          description: Commission rate (decimal)
+          example: 0.02
+        currency:
+          type: string
+          description: Currency for monetary values
+          example: USD
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid API key. Please check your credentials.
+        code:
+          type: integer
+          description: HTTP status code
+          example: 401
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Rakuten Advertising API key provided upon affiliate program enrollment. Include as Bearer token in the Authorization header.
+externalDocs:
+  description: Urban Outfitters Affiliate Program
+  url: https://www.urbanoutfitters.com/help/affiliate

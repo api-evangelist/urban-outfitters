@@ -1,0 +1,140 @@
+openapi: 3.0.3
+info:
+  title: Urban Outfitters Affiliate Creatives API
+  description: The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.
+  version: 1.0.0
+  contact:
+    name: Urban Outfitters Affiliate Support
+    url: https://www.urbanoutfitters.com/help/affiliate
+  x-generated-from: documentation
+servers:
+- url: https://api.rakutenadvertising.com
+  description: Rakuten Advertising API (manages Urban Outfitters affiliate program)
+security:
+- apiKeyAuth: []
+tags:
+- name: Creatives
+  description: Banner ads and creative assets for affiliates
+paths:
+  /v1/creatives:
+    get:
+      operationId: listCreatives
+      summary: Urban Outfitters List Creative Assets
+      description: Retrieve available banner ads and creative assets for affiliate promotion.
+      tags:
+      - Creatives
+      parameters:
+      - name: size
+        in: query
+        description: Banner size filter
+        schema:
+          type: string
+          enum:
+          - 300x250
+          - 728x90
+          - 160x600
+          - 300x600
+        example: 300x250
+      responses:
+        '200':
+          description: List of creative assets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreativeListResponse'
+              examples:
+                listCreatives200Example:
+                  summary: Default listCreatives 200 response
+                  x-microcks-default: true
+                  value:
+                    creatives:
+                    - id: banner-abc123
+                      type: banner
+                      size: 300x250
+                      imageUrl: https://media.rakutenadvertising.com/uo-banner-300x250.jpg
+                      clickUrl: https://click.linksynergy.com/fs-bin/click?id=aff-abc123&offerid=788395
+                      startDate: '2025-01-01'
+                      endDate: '2025-06-30'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Creative:
+      type: object
+      description: An affiliate creative asset (banner, text link, etc.)
+      properties:
+        id:
+          type: string
+          description: Creative identifier
+          example: banner-abc123
+        type:
+          type: string
+          description: Creative type
+          enum:
+          - banner
+          - text_link
+          - product_link
+          example: banner
+        size:
+          type: string
+          description: Banner dimensions
+          example: 300x250
+        imageUrl:
+          type: string
+          description: Banner image URL
+          example: https://media.rakutenadvertising.com/uo-banner-300x250.jpg
+        clickUrl:
+          type: string
+          description: Click-through URL with tracking
+          example: https://click.linksynergy.com/fs-bin/click?id=aff-abc123&offerid=788395
+        startDate:
+          type: string
+          format: date
+          description: Creative activation date
+          example: '2025-01-01'
+        endDate:
+          type: string
+          format: date
+          description: Creative expiration date
+          example: '2025-06-30'
+    CreativeListResponse:
+      type: object
+      description: List of creative assets
+      properties:
+        creatives:
+          type: array
+          description: Available creative assets
+          items:
+            $ref: '#/components/schemas/Creative'
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid API key. Please check your credentials.
+        code:
+          type: integer
+          description: HTTP status code
+          example: 401
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Rakuten Advertising API key provided upon affiliate program enrollment. Include as Bearer token in the Authorization header.
+externalDocs:
+  description: Urban Outfitters Affiliate Program
+  url: https://www.urbanoutfitters.com/help/affiliate

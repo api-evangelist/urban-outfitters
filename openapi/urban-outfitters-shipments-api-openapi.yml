@@ -1,0 +1,153 @@
+openapi: 3.0.3
+info:
+  title: Urban Outfitters Affiliate Creatives Shipments API
+  description: The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.
+  version: 1.0.0
+  contact:
+    name: Urban Outfitters Affiliate Support
+    url: https://www.urbanoutfitters.com/help/affiliate
+  x-generated-from: documentation
+servers:
+- url: https://api.rakutenadvertising.com
+  description: Rakuten Advertising API (manages Urban Outfitters affiliate program)
+security:
+- apiKeyAuth: []
+tags:
+- name: Shipments
+  description: Shipment and fulfillment tracking
+paths:
+  /v1/orders/{order_id}/shipments:
+    post:
+      operationId: createShipment
+      summary: Urban Outfitters Create Shipment
+      description: Submit shipment tracking information for a fulfilled marketplace order.
+      tags:
+      - Shipments
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        description: The order identifier
+        schema:
+          type: string
+        example: order-xyz789
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentCreate'
+            examples:
+              createShipmentRequestExample:
+                summary: Default createShipment request
+                x-microcks-default: true
+                value:
+                  carrier: UPS
+                  trackingNumber: 1Z999AA10123456784
+                  estimatedDelivery: '2025-03-20'
+      responses:
+        '201':
+          description: Shipment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+              examples:
+                createShipment201Example:
+                  summary: Default createShipment 201 response
+                  x-microcks-default: true
+                  value:
+                    id: shipment-abc123
+                    orderId: order-xyz789
+                    carrier: UPS
+                    trackingNumber: 1Z999AA10123456784
+                    status: shipped
+                    createdAt: '2025-03-17T09:00:00Z'
+        '404':
+          description: Order not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ShipmentCreate:
+      type: object
+      description: Request to create a shipment record
+      required:
+      - carrier
+      - trackingNumber
+      properties:
+        carrier:
+          type: string
+          example: UPS
+        trackingNumber:
+          type: string
+          example: 1Z999AA10123456784
+        estimatedDelivery:
+          type: string
+          format: date
+          example: '2025-03-20'
+    Shipment:
+      type: object
+      description: Shipment record for a fulfilled order
+      properties:
+        id:
+          type: string
+          description: Shipment identifier
+          example: shipment-abc123
+        orderId:
+          type: string
+          description: Associated order identifier
+          example: order-xyz789
+        carrier:
+          type: string
+          description: Shipping carrier
+          example: UPS
+        trackingNumber:
+          type: string
+          description: Carrier tracking number
+          example: 1Z999AA10123456784
+        status:
+          type: string
+          description: Shipment status
+          enum:
+          - shipped
+          - in_transit
+          - delivered
+          example: shipped
+        createdAt:
+          type: string
+          format: date-time
+          description: Shipment creation time
+          example: '2025-03-17T09:00:00Z'
+        estimatedDelivery:
+          type: string
+          format: date
+          description: Estimated delivery date
+          example: '2025-03-20'
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          example: unauthorized
+        message:
+          type: string
+          example: Invalid API key.
+        code:
+          type: integer
+          example: 401
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Rakuten Advertising API key provided upon affiliate program enrollment. Include as Bearer token in the Authorization header.
+externalDocs:
+  description: Urban Outfitters Affiliate Program
+  url: https://www.urbanoutfitters.com/help/affiliate

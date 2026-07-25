@@ -1,0 +1,389 @@
+openapi: 3.0.3
+info:
+  title: Urban Outfitters Affiliate Creatives Products API
+  description: The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.
+  version: 1.0.0
+  contact:
+    name: Urban Outfitters Affiliate Support
+    url: https://www.urbanoutfitters.com/help/affiliate
+  x-generated-from: documentation
+servers:
+- url: https://api.rakutenadvertising.com
+  description: Rakuten Advertising API (manages Urban Outfitters affiliate program)
+security:
+- apiKeyAuth: []
+tags:
+- name: Products
+  description: Product catalog data for affiliate promotion
+paths:
+  /v1/products:
+    get:
+      operationId: searchProducts
+      summary: Urban Outfitters Search Products
+      description: Search the Urban Outfitters product catalog for affiliate promotion. Returns product listings with prices, images, and deep link URLs.
+      tags:
+      - Products
+      parameters:
+      - name: q
+        in: query
+        description: Search query string
+        schema:
+          type: string
+        example: graphic tee
+      - name: category
+        in: query
+        description: Product category filter
+        schema:
+          type: string
+          enum:
+          - womens
+          - mens
+          - home
+          - accessories
+          - beauty
+        example: womens
+      - name: limit
+        in: query
+        description: Maximum number of products to return
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        example: 20
+      - name: offset
+        in: query
+        description: Pagination offset
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+        example: 0
+      responses:
+        '200':
+          description: Product search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchResponse'
+              examples:
+                searchProducts200Example:
+                  summary: Default searchProducts 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 450
+                    products:
+                    - id: prod-12345
+                      name: Graphic Tee - Earth Day
+                      price: 29.0
+                      currency: USD
+                      category: womens
+                      imageUrl: https://images.urbndata.com/is/image/UrbanOutfitters/prod-12345
+                      affiliateUrl: https://click.linksynergy.com/link?id=affiliate_id&offerid=788395&type=2&murl=https%3A%2F%2Fwww.urbanoutfitters.com%2Fshop%2Fprod-12345
+        '401':
+          description: Unauthorized - invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createSellerProduct
+      summary: Urban Outfitters Create Seller Product
+      description: Submit a new product listing to the Urban Outfitters marketplace for review.
+      tags:
+      - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerProductCreate'
+            examples:
+              createSellerProductRequestExample:
+                summary: Default createSellerProduct request
+                x-microcks-default: true
+                value:
+                  sku: BRAND-NEW-ITEM-001
+                  name: New Indie Brand Item
+                  description: Handcrafted artisan product
+                  price: 55.0
+                  currency: USD
+                  category: womens
+      responses:
+        '201':
+          description: Product listing created and submitted for review
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SellerProduct'
+              examples:
+                createSellerProduct201Example:
+                  summary: Default createSellerProduct 201 response
+                  x-microcks-default: true
+                  value:
+                    id: seller-prod-002
+                    sku: BRAND-NEW-ITEM-001
+                    name: New Indie Brand Item
+                    status: pending_review
+        '400':
+          description: Invalid product data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError_2'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/products/{product_id}:
+    get:
+      operationId: getProduct
+      summary: Urban Outfitters Get Product Details
+      description: Retrieve detailed information for a specific Urban Outfitters product including price, description, available sizes, and affiliate deep link.
+      tags:
+      - Products
+      parameters:
+      - name: product_id
+        in: path
+        required: true
+        description: The unique product identifier
+        schema:
+          type: string
+        example: prod-12345
+      responses:
+        '200':
+          description: Product details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                getProduct200Example:
+                  summary: Default getProduct 200 response
+                  x-microcks-default: true
+                  value:
+                    id: prod-12345
+                    name: Graphic Tee - Earth Day
+                    description: Relaxed-fit graphic tee in 100% cotton
+                    price: 29.0
+                    currency: USD
+                    category: womens
+                    brand: Urban Outfitters
+                    inStock: true
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    SellerProduct:
+      type: object
+      description: A seller product listing on the Urban Outfitters marketplace
+      properties:
+        id:
+          type: string
+          description: Marketplace product identifier
+          example: seller-prod-001
+        sku:
+          type: string
+          description: Seller SKU / product identifier
+          example: UO-BRAND-TEE-001
+        name:
+          type: string
+          description: Product name
+          example: Indie Brand Graphic Tee
+        description:
+          type: string
+          description: Product description
+          example: Handcrafted screenprinted tee
+        price:
+          type: number
+          description: Product retail price
+          example: 45.0
+        currency:
+          type: string
+          description: Price currency
+          example: USD
+        category:
+          type: string
+          description: Product category
+          example: womens
+        status:
+          type: string
+          description: Listing status
+          enum:
+          - active
+          - inactive
+          - pending_review
+          - rejected
+          example: active
+        inventoryQuantity:
+          type: integer
+          description: Available inventory
+          example: 250
+        imageUrls:
+          type: array
+          description: Product image URLs
+          items:
+            type: string
+          example:
+          - https://cdn.seller.com/product-image-1.jpg
+    Product:
+      type: object
+      description: A product available in the Urban Outfitters catalog
+      properties:
+        id:
+          type: string
+          description: Unique product identifier
+          example: prod-12345
+        name:
+          type: string
+          description: Product name
+          example: Graphic Tee - Earth Day
+        description:
+          type: string
+          description: Product description
+          example: Relaxed-fit graphic tee in 100% cotton
+        price:
+          type: number
+          description: Product price
+          example: 29.0
+        salePrice:
+          type: number
+          description: Sale price if on sale
+          example: 19.99
+        currency:
+          type: string
+          description: Price currency
+          example: USD
+        category:
+          type: string
+          description: Product category
+          enum:
+          - womens
+          - mens
+          - home
+          - accessories
+          - beauty
+          - kids
+          example: womens
+        brand:
+          type: string
+          description: Brand name
+          example: Urban Outfitters
+        imageUrl:
+          type: string
+          description: Primary product image URL
+          example: https://images.urbndata.com/is/image/UrbanOutfitters/prod-12345
+        affiliateUrl:
+          type: string
+          description: Affiliate deep link for the product
+          example: https://click.linksynergy.com/link?id=aff-abc123&offerid=788395
+        inStock:
+          type: boolean
+          description: Whether the product is in stock
+          example: true
+        sizes:
+          type: array
+          description: Available sizes
+          items:
+            type: string
+          example:
+          - XS
+          - S
+          - M
+          - L
+          - XL
+    SellerProductCreate:
+      type: object
+      description: Request body for creating a product listing
+      required:
+      - sku
+      - name
+      - price
+      - currency
+      properties:
+        sku:
+          type: string
+          example: BRAND-NEW-ITEM-001
+        name:
+          type: string
+          example: New Product Name
+        description:
+          type: string
+          example: Product description
+        price:
+          type: number
+          example: 55.0
+        currency:
+          type: string
+          example: USD
+        category:
+          type: string
+          example: womens
+    APIError_2:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          example: unauthorized
+        message:
+          type: string
+          example: Invalid API key.
+        code:
+          type: integer
+          example: 401
+    ProductSearchResponse:
+      type: object
+      description: Paginated product search results
+      properties:
+        total:
+          type: integer
+          description: Total matching products
+          example: 450
+        offset:
+          type: integer
+          description: Current offset
+          example: 0
+        limit:
+          type: integer
+          description: Items per page
+          example: 20
+        products:
+          type: array
+          description: List of products
+          items:
+            $ref: '#/components/schemas/Product'
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid API key. Please check your credentials.
+        code:
+          type: integer
+          description: HTTP status code
+          example: 401
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Rakuten Advertising API key provided upon affiliate program enrollment. Include as Bearer token in the Authorization header.
+externalDocs:
+  description: Urban Outfitters Affiliate Program
+  url: https://www.urbanoutfitters.com/help/affiliate

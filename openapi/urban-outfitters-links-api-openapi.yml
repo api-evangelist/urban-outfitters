@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: Urban Outfitters Affiliate Creatives Links API
+  description: The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.
+  version: 1.0.0
+  contact:
+    name: Urban Outfitters Affiliate Support
+    url: https://www.urbanoutfitters.com/help/affiliate
+  x-generated-from: documentation
+servers:
+- url: https://api.rakutenadvertising.com
+  description: Rakuten Advertising API (manages Urban Outfitters affiliate program)
+security:
+- apiKeyAuth: []
+tags:
+- name: Links
+  description: Affiliate tracking link generation and management
+paths:
+  /v1/links:
+    post:
+      operationId: createAffiliateLink
+      summary: Urban Outfitters Create Affiliate Link
+      description: Generate an affiliate tracking link for a specific Urban Outfitters product or page URL. The generated link includes affiliate tracking parameters.
+      tags:
+      - Links
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AffiliateLinkCreate'
+            examples:
+              createAffiliateLinkRequestExample:
+                summary: Default createAffiliateLink request
+                x-microcks-default: true
+                value:
+                  targetUrl: https://www.urbanoutfitters.com/shop/prod-12345
+                  affiliateId: aff-abc123
+      responses:
+        '200':
+          description: Generated affiliate link
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AffiliateLink'
+              examples:
+                createAffiliateLink200Example:
+                  summary: Default createAffiliateLink 200 response
+                  x-microcks-default: true
+                  value:
+                    affiliateUrl: https://click.linksynergy.com/link?id=aff-abc123&offerid=788395&type=2&murl=https%3A%2F%2Fwww.urbanoutfitters.com%2Fshop%2Fprod-12345
+                    trackingId: track-xyz789
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    AffiliateLinkCreate:
+      type: object
+      description: Request to create an affiliate link
+      required:
+      - targetUrl
+      - affiliateId
+      properties:
+        targetUrl:
+          type: string
+          description: The Urban Outfitters URL to create an affiliate link for
+          example: https://www.urbanoutfitters.com/shop/prod-12345
+        affiliateId:
+          type: string
+          description: Affiliate account identifier
+          example: aff-abc123
+    AffiliateLink:
+      type: object
+      description: A generated affiliate tracking link
+      properties:
+        affiliateUrl:
+          type: string
+          description: The affiliate tracking URL to use in promotions
+          example: https://click.linksynergy.com/link?id=aff-abc123&offerid=788395
+        trackingId:
+          type: string
+          description: Unique tracking identifier for this link
+          example: track-xyz789
+        targetUrl:
+          type: string
+          description: The original target URL being linked
+          example: https://www.urbanoutfitters.com/shop/prod-12345
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid API key. Please check your credentials.
+        code:
+          type: integer
+          description: HTTP status code
+          example: 401
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Rakuten Advertising API key provided upon affiliate program enrollment. Include as Bearer token in the Authorization header.
+externalDocs:
+  description: Urban Outfitters Affiliate Program
+  url: https://www.urbanoutfitters.com/help/affiliate

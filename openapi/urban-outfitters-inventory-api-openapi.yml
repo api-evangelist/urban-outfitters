@@ -1,0 +1,137 @@
+openapi: 3.0.3
+info:
+  title: Urban Outfitters Affiliate Creatives Inventory API
+  description: The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.
+  version: 1.0.0
+  contact:
+    name: Urban Outfitters Affiliate Support
+    url: https://www.urbanoutfitters.com/help/affiliate
+  x-generated-from: documentation
+servers:
+- url: https://api.rakutenadvertising.com
+  description: Rakuten Advertising API (manages Urban Outfitters affiliate program)
+security:
+- apiKeyAuth: []
+tags:
+- name: Inventory
+  description: Inventory level management
+paths:
+  /v1/inventory:
+    put:
+      operationId: updateInventory
+      summary: Urban Outfitters Update Inventory
+      description: Update inventory levels for one or more seller products on the Urban Outfitters marketplace.
+      tags:
+      - Inventory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryUpdate'
+            examples:
+              updateInventoryRequestExample:
+                summary: Default updateInventory request
+                x-microcks-default: true
+                value:
+                  updates:
+                  - sku: UO-BRAND-TEE-001
+                    quantity: 300
+                  - sku: UO-BRAND-JACKET-002
+                    quantity: 45
+      responses:
+        '200':
+          description: Inventory updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryUpdateResponse'
+              examples:
+                updateInventory200Example:
+                  summary: Default updateInventory 200 response
+                  x-microcks-default: true
+                  value:
+                    updated: 2
+                    failed: 0
+                    results:
+                    - sku: UO-BRAND-TEE-001
+                      status: updated
+                      quantity: 300
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    InventoryUpdateResponse:
+      type: object
+      description: Result of inventory update
+      properties:
+        updated:
+          type: integer
+          description: Number of successfully updated SKUs
+          example: 2
+        failed:
+          type: integer
+          description: Number of failed updates
+          example: 0
+        results:
+          type: array
+          description: Per-SKU update results
+          items:
+            type: object
+            properties:
+              sku:
+                type: string
+                example: UO-BRAND-TEE-001
+              status:
+                type: string
+                example: updated
+              quantity:
+                type: integer
+                example: 300
+    InventoryUpdate:
+      type: object
+      description: Inventory update request
+      required:
+      - updates
+      properties:
+        updates:
+          type: array
+          description: List of SKU inventory updates
+          items:
+            type: object
+            properties:
+              sku:
+                type: string
+                example: UO-BRAND-TEE-001
+              quantity:
+                type: integer
+                example: 300
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          example: unauthorized
+        message:
+          type: string
+          example: Invalid API key.
+        code:
+          type: integer
+          example: 401
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Rakuten Advertising API key provided upon affiliate program enrollment. Include as Bearer token in the Authorization header.
+externalDocs:
+  description: Urban Outfitters Affiliate Program
+  url: https://www.urbanoutfitters.com/help/affiliate
