@@ -2,7 +2,20 @@ aid: urban-outfitters
 url: https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/apis.yml
 name: Urban Outfitters
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/urban-outfitters.png
 tags:
   - Retail
   - Fashion
@@ -23,61 +36,216 @@ created: '2026-03-24'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: urban-outfitters:affiliate-api
-    name: Urban Outfitters Affiliate Program
-    description: >-
-      Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare) network. Provides
-      affiliate tracking links, banner ads, marketing copy, and product data feeds for affiliates to promote Urban
-      Outfitters products. Commission rates are approximately 2% per confirmed sale, with a 30-day cookie window and
-      monthly payouts.
-    humanURL: https://www.urbanoutfitters.com/help/affiliate
-    baseURL: https://api.rakutenadvertising.com
-    tags:
-      - Affiliate
-      - Marketing
-      - Product Feed
-      - Tracking
-    properties:
-      - type: Documentation
-        url: https://www.urbanoutfitters.com/help/affiliate
-      - type: OpenAPI
-        url: openapi/urban-outfitters-affiliate-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/affiliate-api-product-schema.json
-      - type: JSONSchema
-        url: json-schema/affiliate-api-affiliate-link-schema.json
-      - type: JSONSchema
-        url: json-schema/affiliate-api-commission-report-schema.json
-      - type: JSONSchema
-        url: json-schema/affiliate-api-creative-schema.json
-  - aid: urban-outfitters:marketplace-api
-    name: Urban Outfitters Marketplace (UO MRKT) Integration
-    description: >-
-      Urban Outfitters operates a curated third-party marketplace called UO MRKT for independent lifestyle and fashion
-      brands. Seller integration is managed through EDI and third-party connectors such as ConnectPointz, SellerCloud,
-      and e-tailize. Provides product catalog sync, inventory management, order routing, and shipment tracking for
-      approved sellers.
-    humanURL: https://www.urbanoutfitters.com/mrkt-seller-form
-    baseURL: https://www.urbanoutfitters.com
-    tags:
-      - Marketplace
-      - Sellers
-      - EDI
-      - Inventory
-      - Orders
-    properties:
-      - type: Documentation
-        url: https://www.urbanoutfitters.com/mrkt-seller-form
-      - type: OpenAPI
-        url: openapi/urban-outfitters-marketplace-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/marketplace-api-seller-product-schema.json
-      - type: JSONSchema
-        url: json-schema/marketplace-api-order-schema.json
-      - type: JSONSchema
-        url: json-schema/marketplace-api-shipment-schema.json
-      - type: JSONSchema
-        url: json-schema/marketplace-api-inventory-update-schema.json
+- aid: urban-outfitters:urban-outfitters-creatives-api
+  name: Urban Outfitters Creatives API
+  description: Banner ads and creative assets for affiliates
+  humanURL: https://www.urbanoutfitters.com/help/affiliate
+  baseURL: https://api.rakutenadvertising.com
+  tags:
+  - Creatives
+  properties:
+  - type: OpenAPI
+    url: openapi/urban-outfitters-creatives-api-openapi.yml
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/help/affiliate
+  - type: JSONSchema
+    url: json-schema/affiliate-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-affiliate-link-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-commission-report-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-creative-schema.json
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/mrkt-seller-form
+  - type: JSONSchema
+    url: json-schema/marketplace-api-seller-product-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-order-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-inventory-update-schema.json
+- aid: urban-outfitters:urban-outfitters-inventory-api
+  name: Urban Outfitters Inventory API
+  description: Inventory level management
+  humanURL: https://www.urbanoutfitters.com/help/affiliate
+  baseURL: https://api.rakutenadvertising.com
+  tags:
+  - Inventory
+  properties:
+  - type: OpenAPI
+    url: openapi/urban-outfitters-inventory-api-openapi.yml
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/help/affiliate
+  - type: JSONSchema
+    url: json-schema/affiliate-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-affiliate-link-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-commission-report-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-creative-schema.json
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/mrkt-seller-form
+  - type: JSONSchema
+    url: json-schema/marketplace-api-seller-product-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-order-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-inventory-update-schema.json
+- aid: urban-outfitters:urban-outfitters-links-api
+  name: Urban Outfitters Links API
+  description: Affiliate tracking link generation and management
+  humanURL: https://www.urbanoutfitters.com/help/affiliate
+  baseURL: https://api.rakutenadvertising.com
+  tags:
+  - Links
+  properties:
+  - type: OpenAPI
+    url: openapi/urban-outfitters-links-api-openapi.yml
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/help/affiliate
+  - type: JSONSchema
+    url: json-schema/affiliate-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-affiliate-link-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-commission-report-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-creative-schema.json
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/mrkt-seller-form
+  - type: JSONSchema
+    url: json-schema/marketplace-api-seller-product-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-order-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-inventory-update-schema.json
+- aid: urban-outfitters:urban-outfitters-orders-api
+  name: Urban Outfitters Orders API
+  description: Order retrieval and management
+  humanURL: https://www.urbanoutfitters.com/help/affiliate
+  baseURL: https://api.rakutenadvertising.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/urban-outfitters-orders-api-openapi.yml
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/help/affiliate
+  - type: JSONSchema
+    url: json-schema/affiliate-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-affiliate-link-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-commission-report-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-creative-schema.json
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/mrkt-seller-form
+  - type: JSONSchema
+    url: json-schema/marketplace-api-seller-product-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-order-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-inventory-update-schema.json
+- aid: urban-outfitters:urban-outfitters-products-api
+  name: Urban Outfitters Products API
+  description: Product catalog data for affiliate promotion
+  humanURL: https://www.urbanoutfitters.com/help/affiliate
+  baseURL: https://api.rakutenadvertising.com
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/urban-outfitters-products-api-openapi.yml
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/help/affiliate
+  - type: JSONSchema
+    url: json-schema/affiliate-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-affiliate-link-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-commission-report-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-creative-schema.json
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/mrkt-seller-form
+  - type: JSONSchema
+    url: json-schema/marketplace-api-seller-product-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-order-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-inventory-update-schema.json
+- aid: urban-outfitters:urban-outfitters-reports-api
+  name: Urban Outfitters Reports API
+  description: Commission and performance reporting for affiliates
+  humanURL: https://www.urbanoutfitters.com/help/affiliate
+  baseURL: https://api.rakutenadvertising.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/urban-outfitters-reports-api-openapi.yml
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/help/affiliate
+  - type: JSONSchema
+    url: json-schema/affiliate-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-affiliate-link-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-commission-report-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-creative-schema.json
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/mrkt-seller-form
+  - type: JSONSchema
+    url: json-schema/marketplace-api-seller-product-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-order-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-inventory-update-schema.json
+- aid: urban-outfitters:urban-outfitters-shipments-api
+  name: Urban Outfitters Shipments API
+  description: Shipment and fulfillment tracking
+  humanURL: https://www.urbanoutfitters.com/help/affiliate
+  baseURL: https://api.rakutenadvertising.com
+  tags:
+  - Shipments
+  properties:
+  - type: OpenAPI
+    url: openapi/urban-outfitters-shipments-api-openapi.yml
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/help/affiliate
+  - type: JSONSchema
+    url: json-schema/affiliate-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-affiliate-link-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-commission-report-schema.json
+  - type: JSONSchema
+    url: json-schema/affiliate-api-creative-schema.json
+  - type: Documentation
+    url: https://www.urbanoutfitters.com/mrkt-seller-form
+  - type: JSONSchema
+    url: json-schema/marketplace-api-seller-product-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-order-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/marketplace-api-inventory-update-schema.json
 common:
   - type: AgenticAccess
     url: agentic-access/urban-outfitters-agentic-access.yml
