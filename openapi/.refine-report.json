@@ -1,0 +1,26 @@
+{
+  "provider": "urban-outfitters",
+  "sources": [
+    "urban-outfitters-creatives-api-openapi.yml",
+    "urban-outfitters-inventory-api-openapi.yml",
+    "urban-outfitters-links-api-openapi.yml",
+    "urban-outfitters-orders-api-openapi.yml",
+    "urban-outfitters-products-api-openapi.yml",
+    "urban-outfitters-reports-api-openapi.yml",
+    "urban-outfitters-shipments-api-openapi.yml"
+  ],
+  "outputs": [
+    "urban-outfitters-creatives-api-openapi.yml",
+    "urban-outfitters-inventory-api-openapi.yml",
+    "urban-outfitters-links-api-openapi.yml",
+    "urban-outfitters-orders-api-openapi.yml",
+    "urban-outfitters-products-api-openapi.yml",
+    "urban-outfitters-reports-api-openapi.yml",
+    "urban-outfitters-shipments-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
