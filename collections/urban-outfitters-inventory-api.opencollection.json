@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Urban Outfitters Affiliate Creatives Inventory API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Urban Outfitters Update Inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rakutenadvertising.com/v1/inventory",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update inventory levels for one or more seller products on the Urban Outfitters marketplace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

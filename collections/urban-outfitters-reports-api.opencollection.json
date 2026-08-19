@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Urban Outfitters Affiliate Creatives Reports API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Urban Outfitters Get Commission Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rakutenadvertising.com/v1/reports/commissions",
+            "params": [
+              {
+                "name": "start_date",
+                "value": "2025-01-01",
+                "type": "query",
+                "description": "Start date for the report period"
+              },
+              {
+                "name": "end_date",
+                "value": "2025-03-31",
+                "type": "query",
+                "description": "End date for the report period"
+              },
+              {
+                "name": "affiliate_id",
+                "value": "aff-abc123",
+                "type": "query",
+                "description": "Affiliate account identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve commission earnings and performance metrics for an affiliate account within a specified date range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

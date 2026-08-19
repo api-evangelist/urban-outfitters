@@ -1,0 +1,221 @@
+{
+  "item": [
+    {
+      "id": "ed4e3fc2-2dd8-4e50-a49d-be5ac2a1325b",
+      "name": "Reports",
+      "description": {
+        "content": "Commission and performance reporting for affiliates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "63f417ab-9dc9-41e9-bfd2-f87e01102fc4",
+          "name": "Urban Outfitters Get Commission Report",
+          "request": {
+            "name": "Urban Outfitters Get Commission Report",
+            "description": {
+              "content": "Retrieve commission earnings and performance metrics for an affiliate account within a specified date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "reports",
+                "commissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "Start date for the report period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "End date for the report period"
+                },
+                {
+                  "disabled": false,
+                  "key": "affiliate_id",
+                  "value": "<string>",
+                  "description": "Affiliate account identifier"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11062e2c-ddc2-4831-94f6-1fd0036bb643",
+              "name": "Commission report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reports",
+                    "commissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2025-03-31"
+                    },
+                    {
+                      "key": "affiliate_id",
+                      "value": "aff-abc123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affiliateId\": \"aff-abc123\",\n  \"period\": {\n    \"start\": \"2025-01-01\",\n    \"end\": \"2025-03-31\"\n  },\n  \"totalClicks\": 1250,\n  \"totalSales\": 48,\n  \"totalRevenue\": 2400,\n  \"totalCommission\": 48,\n  \"commissionRate\": 0.02,\n  \"currency\": \"USD\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ee56434-5202-4c02-9ee3-61fa8646a785",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reports",
+                    "commissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2025-03-31"
+                    },
+                    {
+                      "key": "affiliate_id",
+                      "value": "aff-abc123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key. Please check your credentials.\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rakutenadvertising.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d06e4050-b823-4407-983a-404be3eb6d60",
+    "name": "Urban Outfitters Affiliate Creatives Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.\n\nContact Support:\n Name: Urban Outfitters Affiliate Support",
+      "type": "text/plain"
+    }
+  }
+}

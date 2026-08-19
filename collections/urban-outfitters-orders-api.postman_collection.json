@@ -1,0 +1,218 @@
+{
+  "item": [
+    {
+      "id": "4ef16e5f-4bb0-4d5e-b4e8-ce7aab1ce6cd",
+      "name": "Orders",
+      "description": {
+        "content": "Order retrieval and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed747b9c-108f-444f-ba51-6af00f709c6c",
+          "name": "Urban Outfitters List Marketplace Orders",
+          "request": {
+            "name": "Urban Outfitters List Marketplace Orders",
+            "description": {
+              "content": "Retrieve orders from the Urban Outfitters marketplace for the authenticated seller.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by order status"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "Filter orders from this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum orders to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "818f0612-4339-49ea-a364-75b0ef9a6e94",
+              "name": "List of marketplace orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "pending"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 35,\n  \"orders\": [\n    {\n      \"id\": \"order-xyz789\",\n      \"status\": \"pending\",\n      \"createdAt\": \"2025-03-15T14:30:00Z\",\n      \"items\": [\n        {\n          \"sku\": \"UO-BRAND-TEE-001\",\n          \"quantity\": 2,\n          \"price\": 45\n        }\n      ],\n      \"shippingAddress\": {\n        \"name\": \"Jane Smith\",\n        \"city\": \"New York\",\n        \"state\": \"NY\",\n        \"country\": \"US\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdd46f79-8f21-4cf7-ad03-80e1b6cd95e0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "pending"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key.\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rakutenadvertising.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4e1936be-5c46-4375-9d6f-4c8d8fcfc444",
+    "name": "Urban Outfitters Affiliate Creatives Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.\n\nContact Support:\n Name: Urban Outfitters Affiliate Support",
+      "type": "text/plain"
+    }
+  }
+}

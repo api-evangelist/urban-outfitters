@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Urban Outfitters Affiliate Creatives Links API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Urban Outfitters Create Affiliate Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rakutenadvertising.com/v1/links",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate an affiliate tracking link for a specific Urban Outfitters product or page URL. The generated link includes affiliate tracking parameters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Urban Outfitters Affiliate Creatives Products API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Urban Outfitters Search Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rakutenadvertising.com/v1/products",
+            "params": [
+              {
+                "name": "q",
+                "value": "graphic tee",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "category",
+                "value": "womens",
+                "type": "query",
+                "description": "Product category filter"
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "Maximum number of products to return"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Search the Urban Outfitters product catalog for affiliate promotion. Returns product listings with prices, images, and deep link URLs."
+        },
+        {
+          "info": {
+            "name": "Urban Outfitters Create Seller Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rakutenadvertising.com/v1/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new product listing to the Urban Outfitters marketplace for review."
+        },
+        {
+          "info": {
+            "name": "Urban Outfitters Get Product Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rakutenadvertising.com/v1/products/:product_id",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "prod-12345",
+                "type": "path",
+                "description": "The unique product identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific Urban Outfitters product including price, description, available sizes, and affiliate deep link."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

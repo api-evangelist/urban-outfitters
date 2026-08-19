@@ -1,0 +1,536 @@
+{
+  "item": [
+    {
+      "id": "3065e334-edd6-4aa8-8a4b-86a9c045991c",
+      "name": "Products",
+      "description": {
+        "content": "Product catalog data for affiliate promotion",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dca8d4cc-7608-44ed-af73-6d07bb349402",
+          "name": "Urban Outfitters Search Products",
+          "request": {
+            "name": "Urban Outfitters Search Products",
+            "description": {
+              "content": "Search the Urban Outfitters product catalog for affiliate promotion. Returns product listings with prices, images, and deep link URLs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search query string"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Product category filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of products to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3ef9cb7-9d01-4f50-af1d-1f3a465800f1",
+              "name": "Product search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "graphic tee"
+                    },
+                    {
+                      "key": "category",
+                      "value": "womens"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 450,\n  \"products\": [\n    {\n      \"id\": \"prod-12345\",\n      \"name\": \"Graphic Tee - Earth Day\",\n      \"price\": 29,\n      \"currency\": \"USD\",\n      \"category\": \"womens\",\n      \"imageUrl\": \"https://images.urbndata.com/is/image/UrbanOutfitters/prod-12345\",\n      \"affiliateUrl\": \"https://click.linksynergy.com/link?id=affiliate_id&offerid=788395&type=2&murl=https%3A%2F%2Fwww.urbanoutfitters.com%2Fshop%2Fprod-12345\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0544ec95-6bdd-4971-b60b-330aec7ce8c8",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "graphic tee"
+                    },
+                    {
+                      "key": "category",
+                      "value": "womens"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key. Please check your credentials.\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48982737-0b2b-434a-812a-ba5664b60154",
+          "name": "Urban Outfitters Create Seller Product",
+          "request": {
+            "name": "Urban Outfitters Create Seller Product",
+            "description": {
+              "content": "Submit a new product listing to the Urban Outfitters marketplace for review.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "907bca61-62ca-4f50-a8e8-59efd1c86eff",
+              "name": "Product listing created and submitted for review",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": \"BRAND-NEW-ITEM-001\",\n  \"name\": \"New Indie Brand Item\",\n  \"description\": \"Handcrafted artisan product\",\n  \"price\": 55,\n  \"currency\": \"USD\",\n  \"category\": \"womens\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"seller-prod-002\",\n  \"sku\": \"BRAND-NEW-ITEM-001\",\n  \"name\": \"New Indie Brand Item\",\n  \"status\": \"pending_review\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ca8a48d-1a54-4ad6-9af8-8982a8748e63",
+              "name": "Invalid product data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": \"BRAND-NEW-ITEM-001\",\n  \"name\": \"New Indie Brand Item\",\n  \"description\": \"Handcrafted artisan product\",\n  \"price\": 55,\n  \"currency\": \"USD\",\n  \"category\": \"womens\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key.\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09760381-6091-4960-bd7d-c7a981f8edbc",
+          "name": "Urban Outfitters Get Product Details",
+          "request": {
+            "name": "Urban Outfitters Get Product Details",
+            "description": {
+              "content": "Retrieve detailed information for a specific Urban Outfitters product including price, description, available sizes, and affiliate deep link.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products",
+                ":product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The unique product identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e0e9f57-70d9-4997-8238-c0e1ecf192d0",
+              "name": "Product details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The unique product identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"prod-12345\",\n  \"name\": \"Graphic Tee - Earth Day\",\n  \"description\": \"Relaxed-fit graphic tee in 100% cotton\",\n  \"price\": 29,\n  \"currency\": \"USD\",\n  \"category\": \"womens\",\n  \"brand\": \"Urban Outfitters\",\n  \"inStock\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ad16c92-91e7-42b0-b765-f0edc38880d7",
+              "name": "Product not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The unique product identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key. Please check your credentials.\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rakutenadvertising.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a51bb92f-5928-47d3-9478-a63902b0d178",
+    "name": "Urban Outfitters Affiliate Creatives Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.\n\nContact Support:\n Name: Urban Outfitters Affiliate Support",
+      "type": "text/plain"
+    }
+  }
+}

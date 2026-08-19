@@ -1,0 +1,232 @@
+{
+  "item": [
+    {
+      "id": "32028ff8-57f0-47e2-af52-93c97310a995",
+      "name": "Shipments",
+      "description": {
+        "content": "Shipment and fulfillment tracking",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b3fe6c3a-93c2-4de9-b900-e805c9124666",
+          "name": "Urban Outfitters Create Shipment",
+          "request": {
+            "name": "Urban Outfitters Create Shipment",
+            "description": {
+              "content": "Submit shipment tracking information for a fulfilled marketplace order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "orders",
+                ":order_id",
+                "shipments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The order identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"carrier\": \"<string>\",\n  \"trackingNumber\": \"<string>\",\n  \"estimatedDelivery\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f0f0156-3158-4f1d-b6f8-c9076df90ffb",
+              "name": "Shipment created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":order_id",
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"carrier\": \"UPS\",\n  \"trackingNumber\": \"1Z999AA10123456784\",\n  \"estimatedDelivery\": \"2025-03-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"shipment-abc123\",\n  \"orderId\": \"order-xyz789\",\n  \"carrier\": \"UPS\",\n  \"trackingNumber\": \"1Z999AA10123456784\",\n  \"status\": \"shipped\",\n  \"createdAt\": \"2025-03-17T09:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "958c9743-3b27-47f0-b6db-9ea903b875ac",
+              "name": "Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":order_id",
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"carrier\": \"UPS\",\n  \"trackingNumber\": \"1Z999AA10123456784\",\n  \"estimatedDelivery\": \"2025-03-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key.\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rakutenadvertising.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "188b763a-2586-40c9-a809-e7947fdab84d",
+    "name": "Urban Outfitters Affiliate Creatives Shipments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.\n\nContact Support:\n Name: Urban Outfitters Affiliate Support",
+      "type": "text/plain"
+    }
+  }
+}

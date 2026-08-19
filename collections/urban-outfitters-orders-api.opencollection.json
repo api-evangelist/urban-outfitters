@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Urban Outfitters Affiliate Creatives Orders API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Urban Outfitters List Marketplace Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rakutenadvertising.com/v1/orders",
+            "params": [
+              {
+                "name": "status",
+                "value": "pending",
+                "type": "query",
+                "description": "Filter by order status"
+              },
+              {
+                "name": "start_date",
+                "value": "2025-01-01",
+                "type": "query",
+                "description": "Filter orders from this date"
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "Maximum orders to return"
+              }
+            ]
+          },
+          "docs": "Retrieve orders from the Urban Outfitters marketplace for the authenticated seller."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

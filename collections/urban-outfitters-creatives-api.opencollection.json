@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Urban Outfitters Affiliate Creatives API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Creatives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Urban Outfitters List Creative Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rakutenadvertising.com/v1/creatives",
+            "params": [
+              {
+                "name": "size",
+                "value": "300x250",
+                "type": "query",
+                "description": "Banner size filter"
+              }
+            ]
+          },
+          "docs": "Retrieve available banner ads and creative assets for affiliate promotion."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
