@@ -20,6 +20,14 @@ tags:
   - Retail
   - Fashion
   - Apparel
+  - E-Commerce
+  - Affiliates
+  - Marketplace
+  - Fortune 1000
+tags_raw:
+  - Retail
+  - Fashion
+  - Apparel
   - Ecommerce
   - Affiliate
   - Marketplace
@@ -132,6 +140,8 @@ apis:
   humanURL: https://www.urbanoutfitters.com/help/affiliate
   baseURL: https://api.rakutenadvertising.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -162,6 +172,8 @@ apis:
   humanURL: https://www.urbanoutfitters.com/help/affiliate
   baseURL: https://api.rakutenadvertising.com
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
