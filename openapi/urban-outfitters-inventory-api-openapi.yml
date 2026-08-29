@@ -1,15 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Urban Outfitters Affiliate Creatives Inventory API
-  description: The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.
+  title: Urban Outfitters Marketplace Inventory API
+  description: Integration API for the Urban Outfitters curated third-party marketplace (UO MRKT). Independent brands and sellers can list products, manage inventory, receive orders, and update shipment tracking through EDI or third-party integration platforms such as ConnectPointz, SellerCloud, and e-tailize. This spec represents the conceptual API surface for marketplace sellers.
   version: 1.0.0
   contact:
-    name: Urban Outfitters Affiliate Support
-    url: https://www.urbanoutfitters.com/help/affiliate
+    name: Urban Outfitters Marketplace Support
+    url: https://www.urbanoutfitters.com/mrkt-seller-form
   x-generated-from: documentation
 servers:
-- url: https://api.rakutenadvertising.com
-  description: Rakuten Advertising API (manages Urban Outfitters affiliate program)
+- url: https://marketplace.urbanoutfitters.com/api
+  description: Urban Outfitters Marketplace API
 security:
 - apiKeyAuth: []
 tags:
@@ -95,6 +95,19 @@ components:
               quantity:
                 type: integer
                 example: 300
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          example: unauthorized
+        message:
+          type: string
+          example: Invalid API key.
+        code:
+          type: integer
+          example: 401
     InventoryUpdate:
       type: object
       description: Inventory update request
@@ -113,25 +126,12 @@ components:
               quantity:
                 type: integer
                 example: 300
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          example: unauthorized
-        message:
-          type: string
-          example: Invalid API key.
-        code:
-          type: integer
-          example: 401
   securitySchemes:
     apiKeyAuth:
       type: apiKey
       in: header
-      name: Authorization
-      description: Rakuten Advertising API key provided upon affiliate program enrollment. Include as Bearer token in the Authorization header.
+      name: X-Seller-API-Key
+      description: Seller API key provided by Urban Outfitters marketplace onboarding
 externalDocs:
-  description: Urban Outfitters Affiliate Program
-  url: https://www.urbanoutfitters.com/help/affiliate
+  description: Urban Outfitters Marketplace Seller Form
+  url: https://www.urbanoutfitters.com/mrkt-seller-form

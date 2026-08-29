@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Urban Outfitters Affiliate Creatives Links API
+  title: Urban Outfitters Affiliate Links API
   description: The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.
   version: 1.0.0
   contact:
@@ -61,37 +61,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AffiliateLinkCreate:
-      type: object
-      description: Request to create an affiliate link
-      required:
-      - targetUrl
-      - affiliateId
-      properties:
-        targetUrl:
-          type: string
-          description: The Urban Outfitters URL to create an affiliate link for
-          example: https://www.urbanoutfitters.com/shop/prod-12345
-        affiliateId:
-          type: string
-          description: Affiliate account identifier
-          example: aff-abc123
-    AffiliateLink:
-      type: object
-      description: A generated affiliate tracking link
-      properties:
-        affiliateUrl:
-          type: string
-          description: The affiliate tracking URL to use in promotions
-          example: https://click.linksynergy.com/link?id=aff-abc123&offerid=788395
-        trackingId:
-          type: string
-          description: Unique tracking identifier for this link
-          example: track-xyz789
-        targetUrl:
-          type: string
-          description: The original target URL being linked
-          example: https://www.urbanoutfitters.com/shop/prod-12345
     APIError:
       type: object
       description: API error response
@@ -108,6 +77,37 @@ components:
           type: integer
           description: HTTP status code
           example: 401
+    AffiliateLink:
+      type: object
+      description: A generated affiliate tracking link
+      properties:
+        affiliateUrl:
+          type: string
+          description: The affiliate tracking URL to use in promotions
+          example: https://click.linksynergy.com/link?id=aff-abc123&offerid=788395
+        trackingId:
+          type: string
+          description: Unique tracking identifier for this link
+          example: track-xyz789
+        targetUrl:
+          type: string
+          description: The original target URL being linked
+          example: https://www.urbanoutfitters.com/shop/prod-12345
+    AffiliateLinkCreate:
+      type: object
+      description: Request to create an affiliate link
+      required:
+      - targetUrl
+      - affiliateId
+      properties:
+        targetUrl:
+          type: string
+          description: The Urban Outfitters URL to create an affiliate link for
+          example: https://www.urbanoutfitters.com/shop/prod-12345
+        affiliateId:
+          type: string
+          description: Affiliate account identifier
+          example: aff-abc123
   securitySchemes:
     apiKeyAuth:
       type: apiKey

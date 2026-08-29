@@ -1,15 +1,14 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Urban Outfitters Affiliate Creatives Products API
-  description: The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.
+  title: Urban Outfitters Products API
   version: 1.0.0
-  contact:
-    name: Urban Outfitters Affiliate Support
-    url: https://www.urbanoutfitters.com/help/affiliate
   x-generated-from: documentation
+  description: 'Operations tagged Products across 2 of this provider''s published API definitions: urban-outfitters-affiliate-api-openapi.yml, urban-outfitters-marketplace-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.rakutenadvertising.com
   description: Rakuten Advertising API (manages Urban Outfitters affiliate program)
+- url: https://marketplace.urbanoutfitters.com/api
+  description: Urban Outfitters Marketplace API
 security:
 - apiKeyAuth: []
 tags:
@@ -137,6 +136,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://api.rakutenadvertising.com
+      description: Rakuten Advertising API (manages Urban Outfitters affiliate program)
   /v1/products/{product_id}:
     get:
       operationId: getProduct
@@ -181,60 +183,48 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://api.rakutenadvertising.com
+      description: Rakuten Advertising API (manages Urban Outfitters affiliate program)
 components:
   schemas:
-    SellerProduct:
+    ProductSearchResponse:
       type: object
-      description: A seller product listing on the Urban Outfitters marketplace
+      description: Paginated product search results
       properties:
-        id:
-          type: string
-          description: Marketplace product identifier
-          example: seller-prod-001
-        sku:
-          type: string
-          description: Seller SKU / product identifier
-          example: UO-BRAND-TEE-001
-        name:
-          type: string
-          description: Product name
-          example: Indie Brand Graphic Tee
-        description:
-          type: string
-          description: Product description
-          example: Handcrafted screenprinted tee
-        price:
-          type: number
-          description: Product retail price
-          example: 45.0
-        currency:
-          type: string
-          description: Price currency
-          example: USD
-        category:
-          type: string
-          description: Product category
-          example: womens
-        status:
-          type: string
-          description: Listing status
-          enum:
-          - active
-          - inactive
-          - pending_review
-          - rejected
-          example: active
-        inventoryQuantity:
+        total:
           type: integer
-          description: Available inventory
-          example: 250
-        imageUrls:
+          description: Total matching products
+          example: 450
+        offset:
+          type: integer
+          description: Current offset
+          example: 0
+        limit:
+          type: integer
+          description: Items per page
+          example: 20
+        products:
           type: array
-          description: Product image URLs
+          description: List of products
           items:
-            type: string
-          example:
-          - https://cdn.seller.com/product-image-1.jpg
+            $ref: '#/components/schemas/Product'
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid API key. Please check your credentials.
+        code:
+          type: integer
+          description: HTTP status code
+          example: 401
     Product:
       type: object
       description: A product available in the Urban Outfitters catalog
@@ -301,6 +291,36 @@ components:
           - M
           - L
           - XL
+    APIError_2:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          example: unauthorized
+        message:
+          type: string
+          example: Invalid API key.
+        code:
+          type: integer
+          example: 401
+    SellerProductListResponse:
+      type: object
+      description: Paginated seller product listings
+      properties:
+        total:
+          type: integer
+          example: 150
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/SellerProduct'
     SellerProductCreate:
       type: object
       description: Request body for creating a product listing
@@ -328,62 +348,64 @@ components:
         category:
           type: string
           example: womens
-    APIError_2:
+    SellerProduct:
       type: object
-      description: API error response
+      description: A seller product listing on the Urban Outfitters marketplace
       properties:
-        error:
+        id:
           type: string
-          example: unauthorized
-        message:
+          description: Marketplace product identifier
+          example: seller-prod-001
+        sku:
           type: string
-          example: Invalid API key.
-        code:
+          description: Seller SKU / product identifier
+          example: UO-BRAND-TEE-001
+        name:
+          type: string
+          description: Product name
+          example: Indie Brand Graphic Tee
+        description:
+          type: string
+          description: Product description
+          example: Handcrafted screenprinted tee
+        price:
+          type: number
+          description: Product retail price
+          example: 45.0
+        currency:
+          type: string
+          description: Price currency
+          example: USD
+        category:
+          type: string
+          description: Product category
+          example: womens
+        status:
+          type: string
+          description: Listing status
+          enum:
+          - active
+          - inactive
+          - pending_review
+          - rejected
+          example: active
+        inventoryQuantity:
           type: integer
-          example: 401
-    ProductSearchResponse:
-      type: object
-      description: Paginated product search results
-      properties:
-        total:
-          type: integer
-          description: Total matching products
-          example: 450
-        offset:
-          type: integer
-          description: Current offset
-          example: 0
-        limit:
-          type: integer
-          description: Items per page
-          example: 20
-        products:
+          description: Available inventory
+          example: 250
+        imageUrls:
           type: array
-          description: List of products
+          description: Product image URLs
           items:
-            $ref: '#/components/schemas/Product'
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: unauthorized
-        message:
-          type: string
-          description: Human-readable error message
-          example: Invalid API key. Please check your credentials.
-        code:
-          type: integer
-          description: HTTP status code
-          example: 401
+            type: string
+          example:
+          - https://cdn.seller.com/product-image-1.jpg
   securitySchemes:
     apiKeyAuth:
       type: apiKey
       in: header
       name: Authorization
       description: Rakuten Advertising API key provided upon affiliate program enrollment. Include as Bearer token in the Authorization header.
-externalDocs:
-  description: Urban Outfitters Affiliate Program
-  url: https://www.urbanoutfitters.com/help/affiliate
+x-refined-from:
+- urban-outfitters-affiliate-api-openapi.yml
+- urban-outfitters-marketplace-api-openapi.yml
