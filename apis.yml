@@ -62,6 +62,8 @@ apis:
   humanURL: https://www.urbanoutfitters.com/help/affiliate
   baseURL: https://api.rakutenadvertising.com
   tags:
+  - Creative
+  tags_raw:
   - Creatives
   properties:
   - type: OpenAPI
