@@ -87,19 +87,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    OrderItem:
-      type: object
-      description: An item in a marketplace order
-      properties:
-        sku:
-          type: string
-          example: UO-BRAND-TEE-001
-        quantity:
-          type: integer
-          example: 2
-        price:
-          type: number
-          example: 45.0
     Order:
       type: object
       description: A marketplace order from Urban Outfitters
@@ -137,6 +124,43 @@ components:
         currency:
           type: string
           example: USD
+    OrderItem:
+      type: object
+      description: An item in a marketplace order
+      properties:
+        sku:
+          type: string
+          example: UO-BRAND-TEE-001
+        quantity:
+          type: integer
+          example: 2
+        price:
+          type: number
+          example: 45.0
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          example: unauthorized
+        message:
+          type: string
+          example: Invalid API key.
+        code:
+          type: integer
+          example: 401
+    OrderListResponse:
+      type: object
+      description: Paginated list of marketplace orders
+      properties:
+        total:
+          type: integer
+          example: 35
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
     ShippingAddress:
       type: object
       description: A shipping destination address
@@ -162,30 +186,6 @@ components:
         country:
           type: string
           example: US
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          example: unauthorized
-        message:
-          type: string
-          example: Invalid API key.
-        code:
-          type: integer
-          example: 401
-    OrderListResponse:
-      type: object
-      description: Paginated list of marketplace orders
-      properties:
-        total:
-          type: integer
-          example: 35
-        orders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

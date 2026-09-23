@@ -1,7 +1,9 @@
 ---
 title: URBN Reports Record Q2 Sales and Income
 url: https://investor.urbn.com/news-releases/news-release-details/urbn-reports-record-q2-sales-and-income
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Urban Outfitters" press release artificial intelligence'
 position: 5
 source: serpapi-google

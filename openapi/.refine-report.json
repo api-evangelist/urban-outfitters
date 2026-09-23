@@ -1,8 +1,8 @@
 {
   "provider": "urban-outfitters",
   "sources": [
-    "_original/urban-outfitters-affiliate-api-openapi.yml",
-    "_original/urban-outfitters-marketplace-api-openapi.yml"
+    "_ae-authored/urban-outfitters-affiliate-api-openapi.yml",
+    "_ae-authored/urban-outfitters-marketplace-api-openapi.yml"
   ],
   "outputs": [
     "urban-outfitters-creatives-api-openapi.yml",
@@ -17,10 +17,11 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "urban-outfitters-affiliate-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "urban-outfitters-marketplace-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "tag 'Products' spans 2 source specs (urban-outfitters-affiliate-api-openapi.yml, urban-outfitters-marketplace-api-openapi.yml): per-path servers applied"
+    "tag 'Products' spans 2 source specs (urban-outfitters-affiliate-api-openapi.yml, urban-outfitters-marketplace-api-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "urban-outfitters-creatives-api-openapi.yml: previously refined output, superseded by openapi/_original/",

@@ -291,63 +291,6 @@ components:
           - M
           - L
           - XL
-    APIError_2:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          example: unauthorized
-        message:
-          type: string
-          example: Invalid API key.
-        code:
-          type: integer
-          example: 401
-    SellerProductListResponse:
-      type: object
-      description: Paginated seller product listings
-      properties:
-        total:
-          type: integer
-          example: 150
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 50
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/SellerProduct'
-    SellerProductCreate:
-      type: object
-      description: Request body for creating a product listing
-      required:
-      - sku
-      - name
-      - price
-      - currency
-      properties:
-        sku:
-          type: string
-          example: BRAND-NEW-ITEM-001
-        name:
-          type: string
-          example: New Product Name
-        description:
-          type: string
-          example: Product description
-        price:
-          type: number
-          example: 55.0
-        currency:
-          type: string
-          example: USD
-        category:
-          type: string
-          example: womens
     SellerProduct:
       type: object
       description: A seller product listing on the Urban Outfitters marketplace
@@ -400,6 +343,63 @@ components:
             type: string
           example:
           - https://cdn.seller.com/product-image-1.jpg
+    APIError_2:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          example: unauthorized
+        message:
+          type: string
+          example: Invalid API key.
+        code:
+          type: integer
+          example: 401
+    SellerProductCreate:
+      type: object
+      description: Request body for creating a product listing
+      required:
+      - sku
+      - name
+      - price
+      - currency
+      properties:
+        sku:
+          type: string
+          example: BRAND-NEW-ITEM-001
+        name:
+          type: string
+          example: New Product Name
+        description:
+          type: string
+          example: Product description
+        price:
+          type: number
+          example: 55.0
+        currency:
+          type: string
+          example: USD
+        category:
+          type: string
+          example: womens
+    SellerProductListResponse:
+      type: object
+      description: Paginated seller product listings
+      properties:
+        total:
+          type: integer
+          example: 150
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/SellerProduct'
   securitySchemes:
     apiKeyAuth:
       type: apiKey
