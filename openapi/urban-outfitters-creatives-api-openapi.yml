@@ -66,31 +66,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    CreativeListResponse:
-      type: object
-      description: List of creative assets
-      properties:
-        creatives:
-          type: array
-          description: Available creative assets
-          items:
-            $ref: '#/components/schemas/Creative'
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: unauthorized
-        message:
-          type: string
-          description: Human-readable error message
-          example: Invalid API key. Please check your credentials.
-        code:
-          type: integer
-          description: HTTP status code
-          example: 401
     Creative:
       type: object
       description: An affiliate creative asset (banner, text link, etc.)
@@ -129,6 +104,31 @@ components:
           format: date
           description: Creative expiration date
           example: '2025-06-30'
+    CreativeListResponse:
+      type: object
+      description: List of creative assets
+      properties:
+        creatives:
+          type: array
+          description: Available creative assets
+          items:
+            $ref: '#/components/schemas/Creative'
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid API key. Please check your credentials.
+        code:
+          type: integer
+          description: HTTP status code
+          example: 401
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -86,6 +86,19 @@ components:
               quantity:
                 type: integer
                 example: 300
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          example: unauthorized
+        message:
+          type: string
+          example: Invalid API key.
+        code:
+          type: integer
+          example: 401
     InventoryUpdateResponse:
       type: object
       description: Result of inventory update
@@ -113,19 +126,6 @@ components:
               quantity:
                 type: integer
                 example: 300
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          example: unauthorized
-        message:
-          type: string
-          example: Invalid API key.
-        code:
-          type: integer
-          example: 401
   securitySchemes:
     apiKeyAuth:
       type: apiKey
