@@ -68,6 +68,33 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    InventoryUpdateResponse:
+      type: object
+      description: Result of inventory update
+      properties:
+        updated:
+          type: integer
+          description: Number of successfully updated SKUs
+          example: 2
+        failed:
+          type: integer
+          description: Number of failed updates
+          example: 0
+        results:
+          type: array
+          description: Per-SKU update results
+          items:
+            type: object
+            properties:
+              sku:
+                type: string
+                example: UO-BRAND-TEE-001
+              status:
+                type: string
+                example: updated
+              quantity:
+                type: integer
+                example: 300
     InventoryUpdate:
       type: object
       description: Inventory update request
@@ -99,33 +126,6 @@ components:
         code:
           type: integer
           example: 401
-    InventoryUpdateResponse:
-      type: object
-      description: Result of inventory update
-      properties:
-        updated:
-          type: integer
-          description: Number of successfully updated SKUs
-          example: 2
-        failed:
-          type: integer
-          description: Number of failed updates
-          example: 0
-        results:
-          type: array
-          description: Per-SKU update results
-          items:
-            type: object
-            properties:
-              sku:
-                type: string
-                example: UO-BRAND-TEE-001
-              status:
-                type: string
-                example: updated
-              quantity:
-                type: integer
-                example: 300
   securitySchemes:
     apiKeyAuth:
       type: apiKey

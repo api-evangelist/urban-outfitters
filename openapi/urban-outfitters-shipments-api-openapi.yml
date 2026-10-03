@@ -74,6 +74,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ShipmentCreate:
+      type: object
+      description: Request to create a shipment record
+      required:
+      - carrier
+      - trackingNumber
+      properties:
+        carrier:
+          type: string
+          example: UPS
+        trackingNumber:
+          type: string
+          example: 1Z999AA10123456784
+        estimatedDelivery:
+          type: string
+          format: date
+          example: '2025-03-20'
     Shipment:
       type: object
       description: Shipment record for a fulfilled order
@@ -125,23 +142,6 @@ components:
         code:
           type: integer
           example: 401
-    ShipmentCreate:
-      type: object
-      description: Request to create a shipment record
-      required:
-      - carrier
-      - trackingNumber
-      properties:
-        carrier:
-          type: string
-          example: UPS
-        trackingNumber:
-          type: string
-          example: 1Z999AA10123456784
-        estimatedDelivery:
-          type: string
-          format: date
-          example: '2025-03-20'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

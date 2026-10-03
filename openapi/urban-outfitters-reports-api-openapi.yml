@@ -77,6 +77,22 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid API key. Please check your credentials.
+        code:
+          type: integer
+          description: HTTP status code
+          example: 401
     CommissionReport:
       type: object
       description: Commission earnings report for an affiliate
@@ -121,22 +137,6 @@ components:
           type: string
           description: Currency for monetary values
           example: USD
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: unauthorized
-        message:
-          type: string
-          description: Human-readable error message
-          example: Invalid API key. Please check your credentials.
-        code:
-          type: integer
-          description: HTTP status code
-          example: 401
   securitySchemes:
     apiKeyAuth:
       type: apiKey
