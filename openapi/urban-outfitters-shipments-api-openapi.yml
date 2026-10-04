@@ -74,23 +74,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ShipmentCreate:
+    APIError:
       type: object
-      description: Request to create a shipment record
-      required:
-      - carrier
-      - trackingNumber
+      description: API error response
       properties:
-        carrier:
+        error:
           type: string
-          example: UPS
-        trackingNumber:
+          example: unauthorized
+        message:
           type: string
-          example: 1Z999AA10123456784
-        estimatedDelivery:
-          type: string
-          format: date
-          example: '2025-03-20'
+          example: Invalid API key.
+        code:
+          type: integer
+          example: 401
     Shipment:
       type: object
       description: Shipment record for a fulfilled order
@@ -129,19 +125,23 @@ components:
           format: date
           description: Estimated delivery date
           example: '2025-03-20'
-    APIError:
+    ShipmentCreate:
       type: object
-      description: API error response
+      description: Request to create a shipment record
+      required:
+      - carrier
+      - trackingNumber
       properties:
-        error:
+        carrier:
           type: string
-          example: unauthorized
-        message:
+          example: UPS
+        trackingNumber:
           type: string
-          example: Invalid API key.
-        code:
-          type: integer
-          example: 401
+          example: 1Z999AA10123456784
+        estimatedDelivery:
+          type: string
+          format: date
+          example: '2025-03-20'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

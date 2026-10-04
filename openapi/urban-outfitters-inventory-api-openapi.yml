@@ -68,6 +68,37 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    APIError:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          example: unauthorized
+        message:
+          type: string
+          example: Invalid API key.
+        code:
+          type: integer
+          example: 401
+    InventoryUpdate:
+      type: object
+      description: Inventory update request
+      required:
+      - updates
+      properties:
+        updates:
+          type: array
+          description: List of SKU inventory updates
+          items:
+            type: object
+            properties:
+              sku:
+                type: string
+                example: UO-BRAND-TEE-001
+              quantity:
+                type: integer
+                example: 300
     InventoryUpdateResponse:
       type: object
       description: Result of inventory update
@@ -95,37 +126,6 @@ components:
               quantity:
                 type: integer
                 example: 300
-    InventoryUpdate:
-      type: object
-      description: Inventory update request
-      required:
-      - updates
-      properties:
-        updates:
-          type: array
-          description: List of SKU inventory updates
-          items:
-            type: object
-            properties:
-              sku:
-                type: string
-                example: UO-BRAND-TEE-001
-              quantity:
-                type: integer
-                example: 300
-    APIError:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          example: unauthorized
-        message:
-          type: string
-          example: Invalid API key.
-        code:
-          type: integer
-          example: 401
   securitySchemes:
     apiKeyAuth:
       type: apiKey

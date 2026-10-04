@@ -87,30 +87,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    OrderListResponse:
-      type: object
-      description: Paginated list of marketplace orders
-      properties:
-        total:
-          type: integer
-          example: 35
-        orders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-    OrderItem:
-      type: object
-      description: An item in a marketplace order
-      properties:
-        sku:
-          type: string
-          example: UO-BRAND-TEE-001
-        quantity:
-          type: integer
-          example: 2
-        price:
-          type: number
-          example: 45.0
     APIError:
       type: object
       description: API error response
@@ -186,6 +162,30 @@ components:
         country:
           type: string
           example: US
+    OrderItem:
+      type: object
+      description: An item in a marketplace order
+      properties:
+        sku:
+          type: string
+          example: UO-BRAND-TEE-001
+        quantity:
+          type: integer
+          example: 2
+        price:
+          type: number
+          example: 45.0
+    OrderListResponse:
+      type: object
+      description: Paginated list of marketplace orders
+      properties:
+        total:
+          type: integer
+          example: 35
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
   securitySchemes:
     apiKeyAuth:
       type: apiKey
