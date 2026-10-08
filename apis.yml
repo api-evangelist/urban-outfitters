@@ -273,6 +273,12 @@ apis:
   - type: JSONSchema
     url: json-schema/marketplace-api-inventory-update-schema.json
 common:
+  - type: Plans
+    url: plans/urban-outfitters-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/urban-outfitters-rate-limits.yml
+  - type: FinOps
+    url: finops/urban-outfitters-finops.yml
   - type: AgenticAccess
     url: agentic-access/urban-outfitters-agentic-access.yml
   - type: DomainSecurity
