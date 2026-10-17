@@ -82,15 +82,6 @@ components:
           type: integer
           description: HTTP status code
           example: 401
-    CreativeListResponse:
-      type: object
-      description: List of creative assets
-      properties:
-        creatives:
-          type: array
-          description: Available creative assets
-          items:
-            $ref: '#/components/schemas/Creative'
     Creative:
       type: object
       description: An affiliate creative asset (banner, text link, etc.)
@@ -129,6 +120,15 @@ components:
           format: date
           description: Creative expiration date
           example: '2025-06-30'
+    CreativeListResponse:
+      type: object
+      description: List of creative assets
+      properties:
+        creatives:
+          type: array
+          description: Available creative assets
+          items:
+            $ref: '#/components/schemas/Creative'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

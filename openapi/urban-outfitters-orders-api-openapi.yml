@@ -87,19 +87,55 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    APIError:
+    OrderItem:
       type: object
-      description: API error response
+      description: An item in a marketplace order
       properties:
-        error:
+        sku:
           type: string
-          example: unauthorized
-        message:
-          type: string
-          example: Invalid API key.
-        code:
+          example: UO-BRAND-TEE-001
+        quantity:
           type: integer
-          example: 401
+          example: 2
+        price:
+          type: number
+          example: 45.0
+    OrderListResponse:
+      type: object
+      description: Paginated list of marketplace orders
+      properties:
+        total:
+          type: integer
+          example: 35
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    ShippingAddress:
+      type: object
+      description: A shipping destination address
+      properties:
+        name:
+          type: string
+          example: Jane Smith
+        address1:
+          type: string
+          example: 123 Main St
+        address2:
+          type: string
+          example: Apt 4B
+        city:
+          type: string
+          example: New York
+        state:
+          type: string
+          example: NY
+        postalCode:
+          type: string
+          example: '10001'
+        country:
+          type: string
+          example: US
     Order:
       type: object
       description: A marketplace order from Urban Outfitters
@@ -137,55 +173,19 @@ components:
         currency:
           type: string
           example: USD
-    ShippingAddress:
+    APIError:
       type: object
-      description: A shipping destination address
+      description: API error response
       properties:
-        name:
+        error:
           type: string
-          example: Jane Smith
-        address1:
+          example: unauthorized
+        message:
           type: string
-          example: 123 Main St
-        address2:
-          type: string
-          example: Apt 4B
-        city:
-          type: string
-          example: New York
-        state:
-          type: string
-          example: NY
-        postalCode:
-          type: string
-          example: '10001'
-        country:
-          type: string
-          example: US
-    OrderItem:
-      type: object
-      description: An item in a marketplace order
-      properties:
-        sku:
-          type: string
-          example: UO-BRAND-TEE-001
-        quantity:
+          example: Invalid API key.
+        code:
           type: integer
-          example: 2
-        price:
-          type: number
-          example: 45.0
-    OrderListResponse:
-      type: object
-      description: Paginated list of marketplace orders
-      properties:
-        total:
-          type: integer
-          example: 35
-        orders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
+          example: 401
   securitySchemes:
     apiKeyAuth:
       type: apiKey
