@@ -273,6 +273,8 @@ apis:
   - type: JSONSchema
     url: json-schema/marketplace-api-inventory-update-schema.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/urban-outfitters/overview
   - type: Plans
     url: plans/urban-outfitters-plans-pricing.yml
   - type: RateLimits
