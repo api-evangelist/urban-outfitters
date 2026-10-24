@@ -1,176 +1,192 @@
 {
+  "info": {
+    "_postman_id": "ece6a7c5-9554-4fe4-8fe3-adf023e590e3",
+    "name": "Urban Outfitters Affiliate Links API",
+    "description": "The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.\n\nContact Support:\n Name: Urban Outfitters Affiliate Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:52:15.000Z",
+    "updatedAt": "2026-10-22T02:52:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ece6a7c5-9554-4fe4-8fe3-adf023e590e3"
+  },
   "item": [
     {
-      "id": "fe5f4e98-9de3-4e05-8a72-cbd98641dd1e",
-      "name": "Links",
-      "description": {
-        "content": "Affiliate tracking link generation and management",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "d0185312-8ed6-452b-b1c8-a080ab61d0b4",
-          "name": "Urban Outfitters Create Affiliate Link",
-          "request": {
-            "name": "Urban Outfitters Create Affiliate Link",
-            "description": {
-              "content": "Generate an affiliate tracking link for a specific Urban Outfitters product or page URL. The generated link includes affiliate tracking parameters.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "links"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"targetUrl\": \"<string>\",\n  \"affiliateId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "links",
+          "item": [
             {
-              "id": "f705e63b-ec45-4f0b-801c-40a046966e23",
-              "name": "Generated affiliate link",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "links"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Urban Outfitters Create Affiliate Link",
+              "id": "e950c8af-ec2d-4f45-bb01-893a60e68020",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"targetUrl\": \"https://www.urbanoutfitters.com/shop/prod-12345\",\n  \"affiliateId\": \"aff-abc123\"\n}",
+                  "raw": "{\n  \"targetUrl\": \"<string>\",\n  \"affiliateId\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"affiliateUrl\": \"https://click.linksynergy.com/link?id=aff-abc123&offerid=788395&type=2&murl=https%3A%2F%2Fwww.urbanoutfitters.com%2Fshop%2Fprod-12345\",\n  \"trackingId\": \"track-xyz789\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "605697b6-c32d-421e-9cf6-f1fef763da6b",
-              "name": "Unauthorized",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "v1",
-                    "links"
-                  ],
+                  "raw": "{{baseUrl}}/v1/links",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
+                  "path": [
+                    "v1",
+                    "links"
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"targetUrl\": \"https://www.urbanoutfitters.com/shop/prod-12345\",\n  \"affiliateId\": \"aff-abc123\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Generate an affiliate tracking link for a specific Urban Outfitters product or page URL. The generated link includes affiliate tracking parameters."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "9a07c0fa-db5f-4743-8bc9-11561463ec3f",
+                  "name": "Generated affiliate link",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"targetUrl\": \"<string>\",\n  \"affiliateId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/links",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "links"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"affiliateUrl\": \"<string>\",\n  \"trackingId\": \"<string>\",\n  \"targetUrl\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:52:16.000Z",
+                  "updatedAt": "2026-10-22T02:52:16.000Z",
+                  "uid": "35240-9a07c0fa-db5f-4743-8bc9-11561463ec3f"
+                },
+                {
+                  "id": "e48408a9-d250-4bce-9816-8a7d54a173ab",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"targetUrl\": \"<string>\",\n  \"affiliateId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/links",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "links"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T02:52:16.000Z",
+                  "updatedAt": "2026-10-22T02:52:16.000Z",
+                  "uid": "35240-e48408a9-d250-4bce-9816-8a7d54a173ab"
                 }
               ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key. Please check your credentials.\",\n  \"code\": 401\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:52:15.000Z",
+              "updatedAt": "2026-10-22T02:52:15.000Z",
+              "uid": "35240-e950c8af-ec2d-4f45-bb01-893a60e68020"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "450c1bd7-2a8c-4efe-bbe5-91a1dbb14cd1",
+          "createdAt": "2026-10-22T02:52:15.000Z",
+          "updatedAt": "2026-10-22T02:52:15.000Z",
+          "uid": "35240-450c1bd7-2a8c-4efe-bbe5-91a1dbb14cd1"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.rakutenadvertising.com",
-      "key": "baseUrl"
+      "id": "b7917f1f-2eea-49ab-949c-5398c02b1761",
+      "createdAt": "2026-10-22T02:52:15.000Z",
+      "updatedAt": "2026-10-22T02:52:15.000Z",
+      "uid": "35240-b7917f1f-2eea-49ab-949c-5398c02b1761"
     }
   ],
   "auth": {
@@ -178,25 +194,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "Authorization",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "e2720f53-3e47-44b5-86d1-dc85bc9011fb",
-    "name": "Urban Outfitters Affiliate Creatives Links API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.\n\nContact Support:\n Name: Urban Outfitters Affiliate Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.rakutenadvertising.com"
     }
-  }
+  ]
 }

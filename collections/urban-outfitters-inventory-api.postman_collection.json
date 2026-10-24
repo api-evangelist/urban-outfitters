@@ -1,176 +1,192 @@
 {
+  "info": {
+    "_postman_id": "7e396fc6-3139-4b8a-a3f8-c81a6fcb0143",
+    "name": "Urban Outfitters Marketplace Inventory API",
+    "description": "Integration API for the Urban Outfitters curated third-party marketplace (UO MRKT). Independent brands and sellers can list products, manage inventory, receive orders, and update shipment tracking through EDI or third-party integration platforms such as ConnectPointz, SellerCloud, and e-tailize. This spec represents the conceptual API surface for marketplace sellers.\n\nContact Support:\n Name: Urban Outfitters Marketplace Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:52:09.000Z",
+    "updatedAt": "2026-10-22T02:52:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7e396fc6-3139-4b8a-a3f8-c81a6fcb0143"
+  },
   "item": [
     {
-      "id": "4dd9d1b8-6c10-4946-ab17-cb8820fe1cce",
-      "name": "Inventory",
-      "description": {
-        "content": "Inventory level management",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "72b492fe-92be-499c-b2d8-fa9ccce51199",
-          "name": "Urban Outfitters Update Inventory",
-          "request": {
-            "name": "Urban Outfitters Update Inventory",
-            "description": {
-              "content": "Update inventory levels for one or more seller products on the Urban Outfitters marketplace.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "inventory"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"updates\": [\n    {\n      \"sku\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "inventory",
+          "item": [
             {
-              "id": "0f5aba63-a6f7-40c1-84d1-f03a1d90f46e",
-              "name": "Inventory updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "inventory"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Urban Outfitters Update Inventory",
+              "id": "26b620da-2c04-4487-b7d9-c6c1a1d0f75b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"updates\": [\n    {\n      \"sku\": \"UO-BRAND-TEE-001\",\n      \"quantity\": 300\n    },\n    {\n      \"sku\": \"UO-BRAND-JACKET-002\",\n      \"quantity\": 45\n    }\n  ]\n}",
+                  "raw": "{\n  \"updates\": [\n    {\n      \"sku\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"updated\": 2,\n  \"failed\": 0,\n  \"results\": [\n    {\n      \"sku\": \"UO-BRAND-TEE-001\",\n      \"status\": \"updated\",\n      \"quantity\": 300\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ee1cbcf6-068d-40fa-9096-eb7606aae3ce",
-              "name": "Unauthorized",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "v1",
-                    "inventory"
-                  ],
+                  "raw": "{{baseUrl}}/v1/inventory",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
+                  "path": [
+                    "v1",
+                    "inventory"
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"updates\": [\n    {\n      \"sku\": \"UO-BRAND-TEE-001\",\n      \"quantity\": 300\n    },\n    {\n      \"sku\": \"UO-BRAND-JACKET-002\",\n      \"quantity\": 45\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Update inventory levels for one or more seller products on the Urban Outfitters marketplace."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "f118d950-8638-4c75-beb0-3be48d8d2fb8",
+                  "name": "Inventory updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Seller-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"updates\": [\n    {\n      \"sku\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/inventory",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "inventory"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"updated\": \"<integer>\",\n  \"failed\": \"<integer>\",\n  \"results\": [\n    {\n      \"sku\": \"<string>\",\n      \"status\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"status\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:52:10.000Z",
+                  "updatedAt": "2026-10-22T02:52:10.000Z",
+                  "uid": "35240-f118d950-8638-4c75-beb0-3be48d8d2fb8"
+                },
+                {
+                  "id": "ab115684-4b40-44f1-9320-e07cdf396c26",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Seller-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"updates\": [\n    {\n      \"sku\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/inventory",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "inventory"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T02:52:10.000Z",
+                  "updatedAt": "2026-10-22T02:52:10.000Z",
+                  "uid": "35240-ab115684-4b40-44f1-9320-e07cdf396c26"
                 }
               ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key.\",\n  \"code\": 401\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:52:10.000Z",
+              "updatedAt": "2026-10-22T02:52:10.000Z",
+              "uid": "35240-26b620da-2c04-4487-b7d9-c6c1a1d0f75b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "9dacbe14-5c77-4437-99fd-b998b1ad4f11",
+          "createdAt": "2026-10-22T02:52:10.000Z",
+          "updatedAt": "2026-10-22T02:52:10.000Z",
+          "uid": "35240-9dacbe14-5c77-4437-99fd-b998b1ad4f11"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.rakutenadvertising.com",
-      "key": "baseUrl"
+      "id": "26d82bd7-b3a8-4e46-bb1a-4fed8219b8a3",
+      "createdAt": "2026-10-22T02:52:10.000Z",
+      "updatedAt": "2026-10-22T02:52:10.000Z",
+      "uid": "35240-26d82bd7-b3a8-4e46-bb1a-4fed8219b8a3"
     }
   ],
   "auth": {
@@ -178,25 +194,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "X-Seller-API-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "6051a113-3265-4fd0-beee-dfa8c23ee559",
-    "name": "Urban Outfitters Affiliate Creatives Inventory API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.\n\nContact Support:\n Name: Urban Outfitters Affiliate Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://marketplace.urbanoutfitters.com/api"
     }
-  }
+  ]
 }

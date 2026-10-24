@@ -1,192 +1,201 @@
 {
+  "info": {
+    "_postman_id": "c53d77f7-7f3a-4be7-91d3-8419493d5f82",
+    "name": "Urban Outfitters Marketplace Orders API",
+    "description": "Integration API for the Urban Outfitters curated third-party marketplace (UO MRKT). Independent brands and sellers can list products, manage inventory, receive orders, and update shipment tracking through EDI or third-party integration platforms such as ConnectPointz, SellerCloud, and e-tailize. This spec represents the conceptual API surface for marketplace sellers.\n\nContact Support:\n Name: Urban Outfitters Marketplace Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:52:20.000Z",
+    "updatedAt": "2026-10-22T02:52:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c53d77f7-7f3a-4be7-91d3-8419493d5f82"
+  },
   "item": [
     {
-      "id": "4ef16e5f-4bb0-4d5e-b4e8-ce7aab1ce6cd",
-      "name": "Orders",
-      "description": {
-        "content": "Order retrieval and management",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "ed747b9c-108f-444f-ba51-6af00f709c6c",
-          "name": "Urban Outfitters List Marketplace Orders",
-          "request": {
-            "name": "Urban Outfitters List Marketplace Orders",
-            "description": {
-              "content": "Retrieve orders from the Urban Outfitters marketplace for the authenticated seller.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "orders"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "<string>",
-                  "description": "Filter by order status"
-                },
-                {
-                  "disabled": false,
-                  "key": "start_date",
-                  "value": "<date>",
-                  "description": "Filter orders from this date"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "20",
-                  "description": "Maximum orders to return"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "orders",
+          "item": [
             {
-              "id": "818f0612-4339-49ea-a364-75b0ef9a6e94",
-              "name": "List of marketplace orders",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "orders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "status",
-                      "value": "pending"
-                    },
-                    {
-                      "key": "start_date",
-                      "value": "2025-01-01"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "Urban Outfitters List Marketplace Orders",
+              "id": "3e9541d2-0fa4-40b6-b817-5972612a0d6e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"total\": 35,\n  \"orders\": [\n    {\n      \"id\": \"order-xyz789\",\n      \"status\": \"pending\",\n      \"createdAt\": \"2025-03-15T14:30:00Z\",\n      \"items\": [\n        {\n          \"sku\": \"UO-BRAND-TEE-001\",\n          \"quantity\": 2,\n          \"price\": 45\n        }\n      ],\n      \"shippingAddress\": {\n        \"name\": \"Jane Smith\",\n        \"city\": \"New York\",\n        \"state\": \"NY\",\n        \"country\": \"US\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bdd46f79-8f21-4cf7-ad03-80e1b6cd95e0",
-              "name": "Unauthorized",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/v1/orders?status=acknowledged&start_date=<date>&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v1",
                     "orders"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Filter by order status",
                       "key": "status",
-                      "value": "pending"
+                      "value": "acknowledged"
                     },
                     {
+                      "description": "Filter orders from this date",
                       "key": "start_date",
-                      "value": "2025-01-01"
+                      "value": "<date>"
                     },
                     {
+                      "description": "Maximum orders to return",
                       "key": "limit",
                       "value": "20"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Retrieve orders from the Urban Outfitters marketplace for the authenticated seller."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "d2ffa5c5-9330-4498-83fc-dc4470e7b42b",
+                  "name": "List of marketplace orders",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Seller-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/orders?status=acknowledged&start_date=<date>&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "orders"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by order status",
+                          "key": "status",
+                          "value": "acknowledged"
+                        },
+                        {
+                          "description": "Filter orders from this date",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Maximum orders to return",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"total\": \"<integer>\",\n  \"orders\": [\n    {\n      \"id\": \"<string>\",\n      \"status\": \"cancelled\",\n      \"createdAt\": \"<dateTime>\",\n      \"items\": [\n        {\n          \"sku\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"price\": \"<number>\"\n        },\n        {\n          \"sku\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"price\": \"<number>\"\n        }\n      ],\n      \"shippingAddress\": {\n        \"name\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"total\": \"<number>\",\n      \"currency\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"status\": \"cancelled\",\n      \"createdAt\": \"<dateTime>\",\n      \"items\": [\n        {\n          \"sku\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"price\": \"<number>\"\n        },\n        {\n          \"sku\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"price\": \"<number>\"\n        }\n      ],\n      \"shippingAddress\": {\n        \"name\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"total\": \"<number>\",\n      \"currency\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:52:21.000Z",
+                  "updatedAt": "2026-10-22T02:52:21.000Z",
+                  "uid": "35240-d2ffa5c5-9330-4498-83fc-dc4470e7b42b"
+                },
+                {
+                  "id": "3ce89ede-a567-4987-8b43-e18957079d0f",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Seller-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/orders?status=acknowledged&start_date=<date>&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "orders"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by order status",
+                          "key": "status",
+                          "value": "acknowledged"
+                        },
+                        {
+                          "description": "Filter orders from this date",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Maximum orders to return",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T02:52:21.000Z",
+                  "updatedAt": "2026-10-22T02:52:21.000Z",
+                  "uid": "35240-3ce89ede-a567-4987-8b43-e18957079d0f"
                 }
               ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key.\",\n  \"code\": 401\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:52:21.000Z",
+              "updatedAt": "2026-10-22T02:52:21.000Z",
+              "uid": "35240-3e9541d2-0fa4-40b6-b817-5972612a0d6e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "27e7e865-f00a-4d40-b699-303f6f1d5f95",
+          "createdAt": "2026-10-22T02:52:21.000Z",
+          "updatedAt": "2026-10-22T02:52:21.000Z",
+          "uid": "35240-27e7e865-f00a-4d40-b699-303f6f1d5f95"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.rakutenadvertising.com",
-      "key": "baseUrl"
+      "id": "1ca9428f-e9fd-45ad-bc42-f0d03dc26fdb",
+      "createdAt": "2026-10-22T02:52:21.000Z",
+      "updatedAt": "2026-10-22T02:52:21.000Z",
+      "uid": "35240-1ca9428f-e9fd-45ad-bc42-f0d03dc26fdb"
     }
   ],
   "auth": {
@@ -194,25 +203,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "X-Seller-API-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "4e1936be-5c46-4375-9d6f-4c8d8fcfc444",
-    "name": "Urban Outfitters Affiliate Creatives Orders API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.\n\nContact Support:\n Name: Urban Outfitters Affiliate Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://marketplace.urbanoutfitters.com/api"
     }
-  }
+  ]
 }

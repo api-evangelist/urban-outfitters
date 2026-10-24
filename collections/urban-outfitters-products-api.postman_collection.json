@@ -1,510 +1,524 @@
 {
+  "info": {
+    "_postman_id": "b45b1fb1-1fc9-48a9-b1e8-26f22ce2ead0",
+    "name": "Urban Outfitters Products API",
+    "description": "Operations tagged Products across 2 of this provider's published API definitions: urban-outfitters-affiliate-api-openapi.yml, urban-outfitters-marketplace-api-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:52:28.000Z",
+    "updatedAt": "2026-10-22T02:52:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b45b1fb1-1fc9-48a9-b1e8-26f22ce2ead0"
+  },
   "item": [
     {
-      "id": "3065e334-edd6-4aa8-8a4b-86a9c045991c",
-      "name": "Products",
-      "description": {
-        "content": "Product catalog data for affiliate promotion",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "dca8d4cc-7608-44ed-af73-6d07bb349402",
-          "name": "Urban Outfitters Search Products",
-          "request": {
-            "name": "Urban Outfitters Search Products",
-            "description": {
-              "content": "Search the Urban Outfitters product catalog for affiliate promotion. Returns product listings with prices, images, and deep link URLs.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "products"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "products",
+          "item": [
+            {
+              "name": "{product_id}",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>",
-                  "description": "Search query string"
-                },
-                {
-                  "disabled": false,
-                  "key": "category",
-                  "value": "<string>",
-                  "description": "Product category filter"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "20",
-                  "description": "Maximum number of products to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Pagination offset"
+                  "name": "Urban Outfitters Get Product Details",
+                  "id": "1f31ddd1-d60b-4253-aca8-f9a21ef961b4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products/:product_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products",
+                        ":product_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ab2afead-6a5d-499e-9c78-014d6f350320",
+                          "key": "product_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique product identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve detailed information for a specific Urban Outfitters product including price, description, available sizes, and affiliate deep link."
+                  },
+                  "response": [
+                    {
+                      "id": "6b61bf60-077d-49ad-b436-34b1cfb9b8c7",
+                      "name": "Product details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/products/:product_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "products",
+                            ":product_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "product_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price\": \"<number>\",\n  \"salePrice\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"category\": \"womens\",\n  \"brand\": \"<string>\",\n  \"imageUrl\": \"<string>\",\n  \"affiliateUrl\": \"<string>\",\n  \"inStock\": \"<boolean>\",\n  \"sizes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-10-22T02:52:29.000Z",
+                      "updatedAt": "2026-10-22T02:52:29.000Z",
+                      "uid": "35240-6b61bf60-077d-49ad-b436-34b1cfb9b8c7"
+                    },
+                    {
+                      "id": "9ca4c020-20bb-4d44-8398-367029f64a78",
+                      "name": "Product not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/products/:product_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "products",
+                            ":product_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "product_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-22T02:52:29.000Z",
+                      "updatedAt": "2026-10-22T02:52:29.000Z",
+                      "uid": "35240-9ca4c020-20bb-4d44-8398-367029f64a78"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:52:29.000Z",
+                  "updatedAt": "2026-10-22T02:52:29.000Z",
+                  "uid": "35240-1f31ddd1-d60b-4253-aca8-f9a21ef961b4"
                 }
               ],
-              "variable": []
+              "id": "3531c333-2bd3-494a-8331-71c4d39eb73c",
+              "createdAt": "2026-10-22T02:52:29.000Z",
+              "updatedAt": "2026-10-22T02:52:29.000Z",
+              "uid": "35240-3531c333-2bd3-494a-8331-71c4d39eb73c"
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
             {
-              "id": "d3ef9cb7-9d01-4f50-af1d-1f3a465800f1",
-              "name": "Product search results",
-              "originalRequest": {
+              "name": "Urban Outfitters Search Products",
+              "id": "071219da-6291-430f-97c7-571e420ba3af",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/v1/products?q=<string>&category=mens&limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v1",
                     "products"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Search query string",
                       "key": "q",
-                      "value": "graphic tee"
+                      "value": "<string>"
                     },
                     {
+                      "description": "Product category filter",
                       "key": "category",
-                      "value": "womens"
+                      "value": "mens"
                     },
                     {
+                      "description": "Maximum number of products to return",
                       "key": "limit",
                       "value": "20"
                     },
                     {
+                      "description": "Pagination offset",
                       "key": "offset",
                       "value": "0"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Search the Urban Outfitters product catalog for affiliate promotion. Returns product listings with prices, images, and deep link URLs."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"total\": 450,\n  \"products\": [\n    {\n      \"id\": \"prod-12345\",\n      \"name\": \"Graphic Tee - Earth Day\",\n      \"price\": 29,\n      \"currency\": \"USD\",\n      \"category\": \"womens\",\n      \"imageUrl\": \"https://images.urbndata.com/is/image/UrbanOutfitters/prod-12345\",\n      \"affiliateUrl\": \"https://click.linksynergy.com/link?id=affiliate_id&offerid=788395&type=2&murl=https%3A%2F%2Fwww.urbanoutfitters.com%2Fshop%2Fprod-12345\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0544ec95-6bdd-4971-b60b-330aec7ce8c8",
-              "name": "Unauthorized - invalid API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "products"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "d65aa725-d042-4932-94e7-76325e2fedf6",
+                  "name": "Product search results",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products?q=<string>&category=mens&limit=20&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ],
+                      "query": [
+                        {
+                          "description": "Search query string",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Product category filter",
+                          "key": "category",
+                          "value": "mens"
+                        },
+                        {
+                          "description": "Maximum number of products to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "q",
-                      "value": "graphic tee"
-                    },
-                    {
-                      "key": "category",
-                      "value": "womens"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"total\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"products\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"price\": \"<number>\",\n      \"salePrice\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"category\": \"mens\",\n      \"brand\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"affiliateUrl\": \"<string>\",\n      \"inStock\": \"<boolean>\",\n      \"sizes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"price\": \"<number>\",\n      \"salePrice\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"category\": \"kids\",\n      \"brand\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"affiliateUrl\": \"<string>\",\n      \"inStock\": \"<boolean>\",\n      \"sizes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:52:29.000Z",
+                  "updatedAt": "2026-10-22T02:52:29.000Z",
+                  "uid": "35240-d65aa725-d042-4932-94e7-76325e2fedf6"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "33750dde-546b-43ad-879e-4635d276d439",
+                  "name": "Unauthorized - invalid API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products?q=<string>&category=mens&limit=20&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ],
+                      "query": [
+                        {
+                          "description": "Search query string",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Product category filter",
+                          "key": "category",
+                          "value": "mens"
+                        },
+                        {
+                          "description": "Maximum number of products to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T02:52:29.000Z",
+                  "updatedAt": "2026-10-22T02:52:29.000Z",
+                  "uid": "35240-33750dde-546b-43ad-879e-4635d276d439"
                 }
               ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key. Please check your credentials.\",\n  \"code\": 401\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "48982737-0b2b-434a-812a-ba5664b60154",
-          "name": "Urban Outfitters Create Seller Product",
-          "request": {
-            "name": "Urban Outfitters Create Seller Product",
-            "description": {
-              "content": "Submit a new product listing to the Urban Outfitters marketplace for review.",
-              "type": "text/plain"
+              "createdAt": "2026-10-22T02:52:29.000Z",
+              "updatedAt": "2026-10-22T02:52:29.000Z",
+              "uid": "35240-071219da-6291-430f-97c7-571e420ba3af"
             },
-            "url": {
-              "path": [
-                "v1",
-                "products"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
             {
-              "id": "907bca61-62ca-4f50-a8e8-59efd1c86eff",
-              "name": "Product listing created and submitted for review",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "products"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Urban Outfitters Create Seller Product",
+              "id": "666e458f-e660-4393-a97a-0eabf9ea1847",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"sku\": \"BRAND-NEW-ITEM-001\",\n  \"name\": \"New Indie Brand Item\",\n  \"description\": \"Handcrafted artisan product\",\n  \"price\": 55,\n  \"currency\": \"USD\",\n  \"category\": \"womens\"\n}",
+                  "raw": "{\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"seller-prod-002\",\n  \"sku\": \"BRAND-NEW-ITEM-001\",\n  \"name\": \"New Indie Brand Item\",\n  \"status\": \"pending_review\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9ca8a48d-1a54-4ad6-9af8-8982a8748e63",
-              "name": "Invalid product data",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/v1/products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v1",
                     "products"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"sku\": \"BRAND-NEW-ITEM-001\",\n  \"name\": \"New Indie Brand Item\",\n  \"description\": \"Handcrafted artisan product\",\n  \"price\": 55,\n  \"currency\": \"USD\",\n  \"category\": \"womens\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key.\",\n  \"code\": 401\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "09760381-6091-4960-bd7d-c7a981f8edbc",
-          "name": "Urban Outfitters Get Product Details",
-          "request": {
-            "name": "Urban Outfitters Get Product Details",
-            "description": {
-              "content": "Retrieve detailed information for a specific Urban Outfitters product including price, description, available sizes, and affiliate deep link.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "products",
-                ":product_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "product_id",
-                  "description": "(Required) The unique product identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "6e0e9f57-70d9-4997-8238-c0e1ecf192d0",
-              "name": "Product details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "products",
-                    ":product_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "product_id",
-                      "description": "(Required) The unique product identifier"
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Submit a new product listing to the Urban Outfitters marketplace for review."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"prod-12345\",\n  \"name\": \"Graphic Tee - Earth Day\",\n  \"description\": \"Relaxed-fit graphic tee in 100% cotton\",\n  \"price\": 29,\n  \"currency\": \"USD\",\n  \"category\": \"womens\",\n  \"brand\": \"Urban Outfitters\",\n  \"inStock\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2ad16c92-91e7-42b0-b765-f0edc38880d7",
-              "name": "Product not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "products",
-                    ":product_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "product_id",
-                      "description": "(Required) The unique product identifier"
+                  "id": "380a5b05-4f32-494b-94fe-0f58a050a638",
+                  "name": "Product listing created and submitted for review",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ]
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"category\": \"<string>\",\n  \"status\": \"inactive\",\n  \"inventoryQuantity\": \"<integer>\",\n  \"imageUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-10-22T02:52:29.000Z",
+                  "updatedAt": "2026-10-22T02:52:29.000Z",
+                  "uid": "35240-380a5b05-4f32-494b-94fe-0f58a050a638"
+                },
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "fdef43a1-680e-4d31-a4aa-d98d388a558e",
+                  "name": "Invalid product data",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T02:52:29.000Z",
+                  "updatedAt": "2026-10-22T02:52:29.000Z",
+                  "uid": "35240-fdef43a1-680e-4d31-a4aa-d98d388a558e"
                 }
               ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key. Please check your credentials.\",\n  \"code\": 401\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:52:29.000Z",
+              "updatedAt": "2026-10-22T02:52:29.000Z",
+              "uid": "35240-666e458f-e660-4393-a97a-0eabf9ea1847"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "a267a60c-04bb-4177-8b77-97f86d798df3",
+          "createdAt": "2026-10-22T02:52:29.000Z",
+          "updatedAt": "2026-10-22T02:52:29.000Z",
+          "uid": "35240-a267a60c-04bb-4177-8b77-97f86d798df3"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.rakutenadvertising.com",
-      "key": "baseUrl"
+      "id": "67ec4c44-01fd-4b29-b252-4c1b878c9afd",
+      "createdAt": "2026-10-22T02:52:29.000Z",
+      "updatedAt": "2026-10-22T02:52:29.000Z",
+      "uid": "35240-67ec4c44-01fd-4b29-b252-4c1b878c9afd"
     }
   ],
   "auth": {
@@ -512,25 +526,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "Authorization",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "a51bb92f-5928-47d3-9478-a63902b0d178",
-    "name": "Urban Outfitters Affiliate Creatives Products API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.\n\nContact Support:\n Name: Urban Outfitters Affiliate Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.rakutenadvertising.com"
     }
-  }
+  ]
 }

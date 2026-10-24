@@ -1,164 +1,171 @@
 {
+  "info": {
+    "_postman_id": "400ece61-f6e8-40f6-8631-cc8c00b4d17a",
+    "name": "Urban Outfitters Affiliate Creatives API",
+    "description": "The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.\n\nContact Support:\n Name: Urban Outfitters Affiliate Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:52:01.000Z",
+    "updatedAt": "2026-10-22T02:52:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-400ece61-f6e8-40f6-8631-cc8c00b4d17a"
+  },
   "item": [
     {
-      "id": "2cbe3401-37af-42cb-befc-ac9557352f65",
-      "name": "Creatives",
-      "description": {
-        "content": "Banner ads and creative assets for affiliates",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "01f49a3c-f904-4b92-855f-64584fe8e38d",
-          "name": "Urban Outfitters List Creative Assets",
-          "request": {
-            "name": "Urban Outfitters List Creative Assets",
-            "description": {
-              "content": "Retrieve available banner ads and creative assets for affiliate promotion.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "creatives"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "size",
-                  "value": "<string>",
-                  "description": "Banner size filter"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "creatives",
+          "item": [
             {
-              "id": "f6269bca-21ca-4b44-b177-00fe20e9c627",
-              "name": "List of creative assets",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "creatives"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "size",
-                      "value": "300x250"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "Urban Outfitters List Creative Assets",
+              "id": "25938428-f9ec-4c3d-b349-a33081657735",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"creatives\": [\n    {\n      \"id\": \"banner-abc123\",\n      \"type\": \"banner\",\n      \"size\": \"300x250\",\n      \"imageUrl\": \"https://media.rakutenadvertising.com/uo-banner-300x250.jpg\",\n      \"clickUrl\": \"https://click.linksynergy.com/fs-bin/click?id=aff-abc123&offerid=788395\",\n      \"startDate\": \"2025-01-01\",\n      \"endDate\": \"2025-06-30\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8202b72d-543a-4383-8761-8ee317847a30",
-              "name": "Unauthorized",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/v1/creatives?size=728x90",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v1",
                     "creatives"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Banner size filter",
                       "key": "size",
-                      "value": "300x250"
+                      "value": "728x90"
+                    }
+                  ]
+                },
+                "description": "Retrieve available banner ads and creative assets for affiliate promotion."
+              },
+              "response": [
+                {
+                  "id": "02806845-ed04-4480-80b6-7d637a80fef1",
+                  "name": "List of creative assets",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/creatives?size=728x90",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "creatives"
+                      ],
+                      "query": [
+                        {
+                          "description": "Banner size filter",
+                          "key": "size",
+                          "value": "728x90"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"creatives\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"text_link\",\n      \"size\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"clickUrl\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"product_link\",\n      \"size\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"clickUrl\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:52:01.000Z",
+                  "updatedAt": "2026-10-22T02:52:01.000Z",
+                  "uid": "35240-02806845-ed04-4480-80b6-7d637a80fef1"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "96bfad2d-9e6c-4917-a74a-487a1d952700",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/creatives?size=728x90",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "creatives"
+                      ],
+                      "query": [
+                        {
+                          "description": "Banner size filter",
+                          "key": "size",
+                          "value": "728x90"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T02:52:01.000Z",
+                  "updatedAt": "2026-10-22T02:52:01.000Z",
+                  "uid": "35240-96bfad2d-9e6c-4917-a74a-487a1d952700"
                 }
               ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid API key. Please check your credentials.\",\n  \"code\": 401\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:52:01.000Z",
+              "updatedAt": "2026-10-22T02:52:01.000Z",
+              "uid": "35240-25938428-f9ec-4c3d-b349-a33081657735"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "e86fe2a5-ccd9-486d-91dd-2d49640b1920",
+          "createdAt": "2026-10-22T02:52:01.000Z",
+          "updatedAt": "2026-10-22T02:52:01.000Z",
+          "uid": "35240-e86fe2a5-ccd9-486d-91dd-2d49640b1920"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.rakutenadvertising.com",
-      "key": "baseUrl"
+      "id": "d41b9538-20c3-462e-aff3-ca103ddf3d9a",
+      "createdAt": "2026-10-22T02:52:01.000Z",
+      "updatedAt": "2026-10-22T02:52:01.000Z",
+      "uid": "35240-d41b9538-20c3-462e-aff3-ca103ddf3d9a"
     }
   ],
   "auth": {
@@ -166,25 +173,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "Authorization",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "03350d37-1d03-4bbc-9b1c-def130f0649b",
-    "name": "Urban Outfitters Affiliate Creatives API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare). Provides affiliate tracking, product data feeds, and commission reporting for partners promoting Urban Outfitters products. Commission is approximately 2% per confirmed sale with a 30-day cookie window. Partners receive access to banner ads, deep linking, promotional materials, and weekly newsletters. Integration is done through the Rakuten Advertising platform APIs.\n\nContact Support:\n Name: Urban Outfitters Affiliate Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.rakutenadvertising.com"
     }
-  }
+  ]
 }
