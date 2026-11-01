@@ -1,4 +1,4 @@
-# Urban Outfitters (urban-outfitters)
+# Urban Outfitters
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,94 +66,215 @@
 
 Urban Outfitters is a multi-channel lifestyle retailer offering an eclectic mix of women's, men's, and kids apparel, footwear, accessories, beauty, and home goods. Part of URBN, Inc. (which also owns Anthropologie, Free People, Bhldn, and Nuuly), Urban Outfitters operates stores in the US, Europe, and Canada alongside a robust ecommerce platform. The brand provides affiliate marketing integration through the Rakuten Advertising network and a third-party seller marketplace program (UO MRKT) that accepts independent brands selling through EDI and third-party integration platforms. Urban Outfitters uses Stripe for payment processing, Stripe Connect for marketplace seller payouts, and Stripe Terminal for in-store payments.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/urban-outfitters/refs/heads/main/apis.yml)
+**Areas:** Retail · Fashion · Apparel · E-Commerce · Affiliates · Marketplace · Fortune 1000
 
-## Scope
+## Urban Outfitters on APIs.io
 
-- **Type:** Index
+Everything profiled for Urban Outfitters is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/urban-outfitters/](https://apis.io/providers/urban-outfitters/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Retail
-- Fashion
-- Apparel
-- Ecommerce
-- Affiliate
-- Marketplace
+- [Urban Outfitters Creatives API](https://apis.io/apis/urban-outfitters/urban-outfitters-creatives-api/) — Banner ads and creative assets for affiliates
+- [Urban Outfitters Inventory API](https://apis.io/apis/urban-outfitters/urban-outfitters-inventory-api/) — Inventory level management
+- [Urban Outfitters Links API](https://apis.io/apis/urban-outfitters/urban-outfitters-links-api/) — Affiliate tracking link generation and management
+- [Urban Outfitters Orders API](https://apis.io/apis/urban-outfitters/urban-outfitters-orders-api/) — Order retrieval and management
+- [Urban Outfitters Products API](https://apis.io/apis/urban-outfitters/urban-outfitters-products-api/) — Product catalog data for affiliate promotion
+- [Urban Outfitters Reports API](https://apis.io/apis/urban-outfitters/urban-outfitters-reports-api/) — Commission and performance reporting for affiliates
+- [Urban Outfitters Shipments API](https://apis.io/apis/urban-outfitters/urban-outfitters-shipments-api/) — Shipment and fulfillment tracking
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-24
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Urban Outfitters Affiliate Program
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Urban Outfitters affiliate program managed through Rakuten Advertising (formerly LinkShare) network. Provides affiliate tracking links, banner ads, marketing copy, and product data feeds for affiliates to promote Urban Outfitters products. Commission rates are approximately 2% per confirmed sale, with a 30-day cookie window and monthly payouts.
+- [Urban Outfitters Agentic Access](https://apis.io/agentic-access/urban-outfitters/urban-outfitters-agentic-access/)
 
-- **Human URL:** [https://www.urbanoutfitters.com/help/affiliate](https://www.urbanoutfitters.com/help/affiliate)
-- **Base URL:** `https://api.rakutenadvertising.com`
+#### JSON Schema (18)
 
-#### Tags
+The data models the API reads and writes.
 
-- Affiliate
-- Marketing
-- Product Feed
-- Tracking
+- [AffiliateLink](https://apis.io/schemas/urban-outfitters/affiliate-api-affiliate-link/)
+- [AffiliateLinkCreate](https://apis.io/schemas/urban-outfitters/affiliate-api-affiliate-link-create/)
+- [CommissionReport](https://apis.io/schemas/urban-outfitters/affiliate-api-commission-report/)
+- [Creative](https://apis.io/schemas/urban-outfitters/affiliate-api-creative/)
+- [CreativeListResponse](https://apis.io/schemas/urban-outfitters/affiliate-api-creative-list-response/)
+- [Product](https://apis.io/schemas/urban-outfitters/affiliate-api-product/)
+- [ProductSearchResponse](https://apis.io/schemas/urban-outfitters/affiliate-api-product-search-response/)
+- [InventoryUpdate](https://apis.io/schemas/urban-outfitters/marketplace-api-inventory-update/)
+- [InventoryUpdateResponse](https://apis.io/schemas/urban-outfitters/marketplace-api-inventory-update-response/)
+- [Order](https://apis.io/schemas/urban-outfitters/marketplace-api-order/)
+- [OrderItem](https://apis.io/schemas/urban-outfitters/marketplace-api-order-item/)
+- [OrderListResponse](https://apis.io/schemas/urban-outfitters/marketplace-api-order-list-response/)
+- [SellerProduct](https://apis.io/schemas/urban-outfitters/marketplace-api-seller-product/)
+- [SellerProductCreate](https://apis.io/schemas/urban-outfitters/marketplace-api-seller-product-create/)
+- [SellerProductListResponse](https://apis.io/schemas/urban-outfitters/marketplace-api-seller-product-list-response/)
+- [Shipment](https://apis.io/schemas/urban-outfitters/marketplace-api-shipment/)
+- [ShipmentCreate](https://apis.io/schemas/urban-outfitters/marketplace-api-shipment-create/)
+- [ShippingAddress](https://apis.io/schemas/urban-outfitters/marketplace-api-shipping-address/)
 
-#### Properties
+#### JSON Structure (18)
 
-- [Documentation](https://www.urbanoutfitters.com/help/affiliate)
-- [OpenAPI](openapi/urban-outfitters-affiliate-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/urban-outfitters-affiliate-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/urban-outfitters-affiliate-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/affiliate-api-product-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/affiliate-api-affiliate-link-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/affiliate-api-commission-report-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/affiliate-api-creative-schema.json) — [JSON Schema](https://json-schema.org/specification)
+Data models expressed in JSON Structure.
 
-### Urban Outfitters Marketplace (UO MRKT) Integration
+- [Affiliate Api Affiliate Link Create Structure](https://apis.io/json-structure/urban-outfitters/affiliate-api-affiliate-link-create-structure/)
+- [Affiliate Api Affiliate Link Structure](https://apis.io/json-structure/urban-outfitters/affiliate-api-affiliate-link-structure/)
+- [Affiliate Api Commission Report Structure](https://apis.io/json-structure/urban-outfitters/affiliate-api-commission-report-structure/)
+- [Affiliate Api Creative List Response Structure](https://apis.io/json-structure/urban-outfitters/affiliate-api-creative-list-response-structure/)
+- [Affiliate Api Creative Structure](https://apis.io/json-structure/urban-outfitters/affiliate-api-creative-structure/)
+- [Affiliate Api Product Search Response Structure](https://apis.io/json-structure/urban-outfitters/affiliate-api-product-search-response-structure/)
+- [Affiliate Api Product Structure](https://apis.io/json-structure/urban-outfitters/affiliate-api-product-structure/)
+- [Marketplace Api Inventory Update Response Structure](https://apis.io/json-structure/urban-outfitters/marketplace-api-inventory-update-response-structure/)
+- [Marketplace Api Inventory Update Structure](https://apis.io/json-structure/urban-outfitters/marketplace-api-inventory-update-structure/)
+- [Marketplace Api Order Item Structure](https://apis.io/json-structure/urban-outfitters/marketplace-api-order-item-structure/)
+- [Marketplace Api Order List Response Structure](https://apis.io/json-structure/urban-outfitters/marketplace-api-order-list-response-structure/)
+- [Marketplace Api Order Structure](https://apis.io/json-structure/urban-outfitters/marketplace-api-order-structure/)
+- [Marketplace Api Seller Product Create Structure](https://apis.io/json-structure/urban-outfitters/marketplace-api-seller-product-create-structure/)
+- [Marketplace Api Seller Product List Response Structure](https://apis.io/json-structure/urban-outfitters/marketplace-api-seller-product-list-response-structure/)
+- [Marketplace Api Seller Product Structure](https://apis.io/json-structure/urban-outfitters/marketplace-api-seller-product-structure/)
+- [Marketplace Api Shipment Create Structure](https://apis.io/json-structure/urban-outfitters/marketplace-api-shipment-create-structure/)
+- [Marketplace Api Shipment Structure](https://apis.io/json-structure/urban-outfitters/marketplace-api-shipment-structure/)
+- [Marketplace Api Shipping Address Structure](https://apis.io/json-structure/urban-outfitters/marketplace-api-shipping-address-structure/)
 
-Urban Outfitters operates a curated third-party marketplace called UO MRKT for independent lifestyle and fashion brands. Seller integration is managed through EDI and third-party connectors such as ConnectPointz, SellerCloud, and e-tailize. Provides product catalog sync, inventory management, order routing, and shipment tracking for approved sellers.
+#### JSON-LD (1)
 
-- **Human URL:** [https://www.urbanoutfitters.com/mrkt-seller-form](https://www.urbanoutfitters.com/mrkt-seller-form)
-- **Base URL:** `https://www.urbanoutfitters.com`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Urban Outfitters Context](https://apis.io/jsonld/urban-outfitters/urban-outfitters-context/)
 
-- Marketplace
-- Sellers
-- EDI
-- Inventory
-- Orders
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://www.urbanoutfitters.com/mrkt-seller-form)
-- [OpenAPI](openapi/urban-outfitters-marketplace-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/urban-outfitters-marketplace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/urban-outfitters-marketplace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/marketplace-api-seller-product-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/marketplace-api-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/marketplace-api-shipment-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/marketplace-api-inventory-update-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Urban Outfitters Vocabulary](https://apis.io/vocabularies/urban-outfitters/urban-outfitters-vocabulary/)
 
-## Common Properties
+#### Examples (18)
 
-- [LinkedIn](https://www.linkedin.com/company/urban-outfitters)
+Example requests and responses.
+
+- [Affiliate Api Affiliate Link Create Example](https://apis.io/examples/urban-outfitters/affiliate-api-affiliate-link-create-example/)
+- [Affiliate Api Affiliate Link Example](https://apis.io/examples/urban-outfitters/affiliate-api-affiliate-link-example/)
+- [Affiliate Api Commission Report Example](https://apis.io/examples/urban-outfitters/affiliate-api-commission-report-example/)
+- [Affiliate Api Creative Example](https://apis.io/examples/urban-outfitters/affiliate-api-creative-example/)
+- [Affiliate Api Creative List Response Example](https://apis.io/examples/urban-outfitters/affiliate-api-creative-list-response-example/)
+- [Affiliate Api Product Example](https://apis.io/examples/urban-outfitters/affiliate-api-product-example/)
+- [Affiliate Api Product Search Response Example](https://apis.io/examples/urban-outfitters/affiliate-api-product-search-response-example/)
+- [Marketplace Api Inventory Update Example](https://apis.io/examples/urban-outfitters/marketplace-api-inventory-update-example/)
+- [Marketplace Api Inventory Update Response Example](https://apis.io/examples/urban-outfitters/marketplace-api-inventory-update-response-example/)
+- [Marketplace Api Order Example](https://apis.io/examples/urban-outfitters/marketplace-api-order-example/)
+- [Marketplace Api Order Item Example](https://apis.io/examples/urban-outfitters/marketplace-api-order-item-example/)
+- [Marketplace Api Order List Response Example](https://apis.io/examples/urban-outfitters/marketplace-api-order-list-response-example/)
+- [Marketplace Api Seller Product Create Example](https://apis.io/examples/urban-outfitters/marketplace-api-seller-product-create-example/)
+- [Marketplace Api Seller Product Example](https://apis.io/examples/urban-outfitters/marketplace-api-seller-product-example/)
+- [Marketplace Api Seller Product List Response Example](https://apis.io/examples/urban-outfitters/marketplace-api-seller-product-list-response-example/)
+- [Marketplace Api Shipment Create Example](https://apis.io/examples/urban-outfitters/marketplace-api-shipment-create-example/)
+- [Marketplace Api Shipment Example](https://apis.io/examples/urban-outfitters/marketplace-api-shipment-example/)
+- [Marketplace Api Shipping Address Example](https://apis.io/examples/urban-outfitters/marketplace-api-shipping-address-example/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [Urban Outfitters Affiliate API](https://apis.io/collections/urban-outfitters/open-urban-outfitters-affiliate-api/)
+- [Urban Outfitters Affiliate Creatives API](https://apis.io/collections/urban-outfitters/open-urban-outfitters-creatives-api/)
+- [Urban Outfitters Affiliate Creatives Inventory API](https://apis.io/collections/urban-outfitters/open-urban-outfitters-inventory-api/)
+- [Urban Outfitters Affiliate Creatives Links API](https://apis.io/collections/urban-outfitters/open-urban-outfitters-links-api/)
+- [Urban Outfitters Marketplace API](https://apis.io/collections/urban-outfitters/open-urban-outfitters-marketplace-api/)
+- [Urban Outfitters Affiliate Creatives Orders API](https://apis.io/collections/urban-outfitters/open-urban-outfitters-orders-api/)
+- [Urban Outfitters Affiliate Creatives Products API](https://apis.io/collections/urban-outfitters/open-urban-outfitters-products-api/)
+- [Urban Outfitters Affiliate Creatives Reports API](https://apis.io/collections/urban-outfitters/open-urban-outfitters-reports-api/)
+- [Urban Outfitters Affiliate Creatives Shipments API](https://apis.io/collections/urban-outfitters/open-urban-outfitters-shipments-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Urban Outfitters — jsonschema rules](https://apis.io/rules/urban-outfitters/urban-outfitters-jsonschema-spectral-rules/)
+- [Urban Outfitters API Rules](https://apis.io/rules/urban-outfitters/urban-outfitters-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Urban Outfitters Authentication](https://apis.io/security/urban-outfitters/urban-outfitters-authentication/)
+- [Urban Outfitters Domain Security](https://apis.io/security/urban-outfitters/urban-outfitters-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Urban Outfitters Plans Pricing](https://apis.io/plans/urban-outfitters/urban-outfitters-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Urban Outfitters Rate Limits](https://apis.io/rate-limits/urban-outfitters/urban-outfitters-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Urban Outfitters Finops](https://apis.io/finops/urban-outfitters/urban-outfitters-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.urban-outfitters.com)
-- [Website](https://www.urbanoutfitters.com)
-- [Portal](https://www.urbanoutfitters.com/help/affiliate)
-- [GitHub Organization](https://github.com/urbn)
-- [JSON-LD](json-ld/urban-outfitters-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/urban-outfitters-spectral-rules.yml)
-- [Vocabulary](vocabulary/urban-outfitters-vocabulary.yaml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [GitHub](https://github.com/urbn)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.0** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 27.8 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 28.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/urban-outfitters/](https://apis.io/providers/urban-outfitters/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Urban Outfitters: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/urban-outfitters/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
